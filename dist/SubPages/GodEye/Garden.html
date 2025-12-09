@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang=en><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1.0"><title>MDB Lutyen</title><link rel=stylesheet href=site.15dc8534.css><body>
+  <button class=close-btn id=closeCard>←</button>
+  <div class=main-container>
+    <div class=image-container></div>
+  </div>
+  
+  <nav class=jumpbar role=navigation aria-label="Quick jumps">
+    <div class=jumpbar-inner>
+      <button class=jumpchip onclick="location.href='./../../index.html'">Home</button>
+      <button class=jumpchip onclick="location.href='SidePath.html'">SidePath</button>
+      <button class=jumpchip onclick="location.href='Pool.html'">Pool</button>
+      <button class=jumpchip onclick="location.href='Commercial.html'">Commercial</button>
+      <button class=jumpchip onclick="location.href='./../Tower_A.html'">Tower A</button>
+      <button class=jumpchip onclick="location.href='./../Tower_B.html'">Tower B</button>
+      
+    </div>
+  </nav>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js integrity=... crossorigin=anonymous referrerpolicy=no-referrer></script>
+  
+  <script src=https://cdn.jsdelivr.net/npm/panolens@0.12.0/build/panolens.min.js></script>
+
+
+
+  <script>const LOW_SRC="./../../images/Thumbnail/360/Panorama1.webp",HIGH_SRC="./../../images/360/Panorama1.jpg",imageContainer=document.querySelector(".image-container"),panoLow=new PANOLENS.ImagePanorama("./../../images/Thumbnail/360/Panorama1.webp"),panoHigh=new PANOLENS.ImagePanorama("./../../images/360/Panorama1.jpg"),viewer=new PANOLENS.Viewer({container:imageContainer,autoRotate:!1,autoRotateSpeed:.1,controlBar:!1,cameraFov:100});let didInitView=!1;const TEXTURE_YAW=-Math.PI/2+-.1;panoLow.rotation.y=TEXTURE_YAW,panoHigh.rotation.y=TEXTURE_YAW;const TILT_DOWN=Math.PI/50;function setInitialViewAndLockPitch(){if(didInitView)return;didInitView=!0;let a=viewer.getControl(),e=-Math.PI/40;a.rotateUp(-e),"minPolarAngle"in a&&"maxPolarAngle"in a&&(a.minPolarAngle=0,a.maxPolarAngle=Math.PI),"enablePan"in a&&(a.enablePan=!1)}panoLow.addEventListener("enter",setInitialViewAndLockPitch),panoHigh.addEventListener("enter",setInitialViewAndLockPitch),viewer.add(panoLow),viewer.add(panoHigh),viewer.setPanorama(panoLow),panoLow.addEventListener("load",()=>{panoHigh.addEventListener("load",()=>{viewer.setPanorama(panoHigh,600),console.log("✅ Swapped to high-res panorama")}),panoHigh.load()}),panoHigh.addEventListener("error",a=>{console.warn("⚠️ Failed to load high-res:",a)});</script>
+  <script>document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("closeCard");e&&e.addEventListener("click",()=>{window.location.href="./../../../index.html"})});</script>
+  <script src=site.85054d48.js></script>
+
+

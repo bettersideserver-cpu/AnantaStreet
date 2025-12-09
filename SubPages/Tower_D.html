@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ananta Street</title>
+    <link rel="stylesheet" href="./../styles.css">
+    <link rel="stylesheet" href="./../JS/Notification/ControllerCSS.css">
+    <style>
+        @media (max-width: 600px) {
+            .Front {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        sessionStorage.setItem('lastTower', 'A');
+    </script>
+
+    <div id="ui-hint" class="ui-hint" aria-live="polite" role="status">
+        <!-- shown on mouse/trackpad devices -->
+        <div class="ui-hint__row ui-hint__desktop">
+            <!-- mouse icon (inline SVG) -->
+            <svg width="18" height="24" viewBox="0 0 18 24" aria-hidden="true">
+                <path d="M9 1c3.9 0 7 3.1 7 7v8c0 3.9-3.1 7-7 7s-7-3.1-7-7V8c0-3.9 3.1-7 7-7z" fill="white"
+                    opacity=".18" />
+                <rect x="8" y="4" width="2" height="5" rx="1" fill="white" />
+                <rect x="5" y="10" width="8" height="9" rx="4" fill="white" opacity=".4" />
+            </svg>
+            <span>Click on Floor To See Aparments</span>
+        </div>
+
+        <!-- shown on touch devices -->
+        <div class="ui-hint__row ui-hint__touch">
+            <!-- finger icon (inline SVG) -->
+            <svg width="18" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                    d="M12 2a4 4 0 014 4v4h1.2a2.8 2.8 0 012.8 2.8V16c0 3.3-2.7 6-6 6H9.5A5.5 5.5 0 014 16.5V11a3 3 0 016 0v3h1V6a4 4 0 011-2.7z"
+                    fill="white" opacity=".28" />
+                <rect x="11" y="5" width="2" height="9" rx="1" fill="white" />
+            </svg>
+            <span>Click on Tower's To Select Floor</span>
+        </div>
+    </div>
+    <button class="close-btn" id="closeCard">←</button>
+    <div id="infoCard" class="info-card">
+        <div class="info-content">
+
+            <h2 id="modalTitle">Tower A</h2>
+
+            <!-- <div class="image-placeholder">
+                <img src="images/Tower_A.jpg" alt="Tower A" />
+            </div> -->
+            <div class="info-details" id="details"></div>
+
+            <button class="explore-btn" id="navigateButton">Explore</button>
+            <button class="enquiry-btn" id="openEnquiry">Enquiry Call</button>
+
+        </div>
+    </div>
+    <!-- Floor tooltip -->
+    <div id="floorTip" class="floortip" aria-hidden="true"></div>
+    <div class="Front">
+        <div class="image-wrapper">
+            <!-- <img src="./../images/Tower_A.jpg" alt="Tower_2"> -->
+            <img id="mainImage" src="./../images/Thumbnail/Tower_D.webp" data-full="./../images/Tower_D.jpg"
+                alt="Tower_D" fetchpriority="high" decoding="async" width="3840" height="5830" class="blur-up" />
+            <div class="Cutout">
+                <svg viewBox="0 0 3840 5830" xmlns="http://www.w3.org/2000/svg">
+
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="hs-layer" id="hsLayer">
+        <!-- Example hotspots: use % relative to the image -->
+        <button class="hs-dot" style="top:42%; left:50.5%;" onclick="location.href='SubPages/GodEye/Pool.html'">
+            <img src="../images/360_img.png" alt="Pool">
+        </button>
+        <button class="hs-dot" style="top:36.5%; left:42%;" onclick="location.href='SubPages/GodEye/Pool.html'">
+            <img src="../images/360_img.png" alt="Pool">
+        </button>
+    </div>
+    <div class="enquiry">
+        <div class="overlay" id="enquiryOverlay" aria-hidden="true">
+            <div class="modal" role="dialog" aria-labelledby="enquiryTitle">
+                <div class="modal-header">
+                    <div id="enquiryTitle" class="title">Request Callback</div>
+                    <button class="close" id="closeBtn" aria-label="Close">✕</button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="enquiryForm" class="form" novalidate>
+                        <div class="two">
+                            <input class="input" name="firstName" placeholder="First Name" required />
+                            <input class="input" name="lastName" placeholder="Last Name" required />
+                        </div>
+
+                        <div class="phone">
+                            <select name="dialCode" aria-label="Country Code">
+                                <option>+91</option>
+                                <option>+971</option>
+                                <option>+44</option>
+                                <option>+1</option>
+                            </select>
+                            <input type="tel" name="phone" placeholder="Phone Number" required />
+                        </div>
+
+                        <input class="input" type="email" name="email" placeholder="Email Address" required />
+
+
+
+                        <label class="agree">
+                            <input type="checkbox" id="agree" />
+                            <span>I agree to the <a href="#">Privacy Policy</a> and
+                                <a href="#">Terms & Conditions</a>.</span>
+                        </label>
+
+                        <button class="submit" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Center Panel -->
+    <nav class="jumpbar" role="navigation" aria-label="Quick jumps">
+        <div class="jumpbar-inner">
+            <button class="jumpchip" onclick="location.href='../index.html'">Home</button>
+            <button class="jumpchip" onclick="location.href='SubPages/GodEye/Gym.html'">Gym</button>
+            <button class="jumpchip" onclick="location.href='SubPages/GodEye/Banquet_Hall.html'">Banquet Hall</button>
+            <button class="jumpchip" onclick="location.href='SubPages/GodEye/Pool.html'">Pool</button>
+            <button class="jumpchip" onclick="location.href='SubPages/GodEye/Tennis_Court.html'">Tennis Court</button>
+            <button class="jumpchip" onclick="location.href='SubPages/GodEye/Co-Work_Space.html'">Co-Work Space</button>
+            <!-- add more as you like -->
+        </div>
+    </nav>
+
+
+
+
+
+
+
+    <script src="./../JS/Path_Function.js"></script>
+    <script src="./../JS/Notification/Controller_Single.js"></script>
+    <script>
+        (function () {
+            const img = document.querySelector('.image-wrapper img');
+            const layer = document.getElementById('hsLayer');
+            if (!img || !layer) return;
+
+            // Read the actual on-screen rectangle of the image and pin the overlay to it
+            function doSync() {
+                const r = img.getBoundingClientRect();
+                layer.style.top = r.top + 'px';
+                layer.style.left = r.left + 'px';
+                layer.style.width = r.width + 'px';
+                layer.style.height = r.height + 'px';
+            }
+
+            // Run the sync AFTER layout has fully settled
+            function syncAfterLayout() {
+                requestAnimationFrame(() => requestAnimationFrame(doSync));
+            }
+
+            // Initial syncs
+            if (img.complete) syncAfterLayout();
+            else img.addEventListener('load', syncAfterLayout, { once: true });
+            window.addEventListener('load', syncAfterLayout, { once: true });
+
+            // On resize / orientation
+            window.addEventListener('resize', syncAfterLayout);
+            window.addEventListener('orientationchange', () => {
+                syncAfterLayout();
+                // extra pass for mobile browsers that "settle" a moment later
+                setTimeout(syncAfterLayout, 250);
+            });
+
+            // On aspect-ratio media query flips
+            const mqPortrait = window.matchMedia('(max-aspect-ratio: 3840/5830)');
+            const mqLandscape = window.matchMedia('(min-aspect-ratio: 3840/5830)');
+            if (mqPortrait.addEventListener) {
+                mqPortrait.addEventListener('change', syncAfterLayout);
+                mqLandscape.addEventListener('change', syncAfterLayout);
+            } else if (mqPortrait.addListener) { // Safari <14
+                mqPortrait.addListener(syncAfterLayout);
+                mqLandscape.addListener(syncAfterLayout);
+            }
+
+            // Watch the image box itself
+            if ('ResizeObserver' in window) {
+                new ResizeObserver(syncAfterLayout).observe(img);
+            }
+        })();
+    </script>
+    <script>
+        const closeCard = document.getElementById('closeCard'); // make sure it's defined
+        if (closeCard) {
+            closeCard.addEventListener('click', () => {
+                window.location.href = "./../index.html"; // always go to index.html
+            });
+        }
+    </script>
+    <script src="./../JS/enquiry_data.js"></script>
+    <script src="./../JS/HoverName.js"></script>
+    <script src="./../JS/Disbale-Inspect.js"></script>
+    <script src="./../JS/Image_Loader.js"></script>
+
+</body>
+
+</html>

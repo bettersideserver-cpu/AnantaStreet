@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDB Lutyen</title>
+  <link rel="stylesheet" href="./../../styles.css" />
+</head>
+
+<body>
+  <button class="close-btn" id="closeCard">←</button>
+  <div class="main-container">
+    <div class="image-container"></div>
+  </div>
+  <!-- Bottom Center Panel -->
+  <nav class="jumpbar" role="navigation" aria-label="Quick jumps">
+    <div class="jumpbar-inner">
+      <button class="jumpchip" onclick="location.href='../../index.html'">Home</button>
+      <button class="jumpchip" onclick="location.href='SubPages/GodEye/AnantaStreet.html'">AnantaStreet</button>
+      <button class="jumpchip" onclick="location.href='SubPages/GodEye/RightEntry.html'">Right Entry</button>
+      <button class="jumpchip" onclick="location.href='SubPages/GodEye/BackSide.html'">BackSide</button>
+      <!-- add more as you like -->
+    </div>
+  </nav>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js" integrity="..." crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/panolens@0.12.0/build/panolens.min.js"></script>
+
+
+  <script>
+    // 1) Define both images (put both in /images/360/)
+    const LOW_SRC = "./../../images/Thumbnail/360/Panorama4.webp"; // lightweight preview
+    const HIGH_SRC = "./../../images/360/Panorama4.jpg";      // full quality
+
+    const imageContainer = document.querySelector(".image-container");
+
+    // 2) Create panoramas
+    const panoLow = new PANOLENS.ImagePanorama(LOW_SRC);
+    const panoHigh = new PANOLENS.ImagePanorama(HIGH_SRC);
+
+    // 3) Viewer
+    const viewer = new PANOLENS.Viewer({
+      container: imageContainer,
+      autoRotate: false,
+      autoRotateSpeed: 0.1,
+      controlBar: false,
+      cameraFov: 70
+    });
+    // after: const viewer = new PANOLENS.Viewer({...});
+    let didInitView = false;
+
+    // Keep the same initial yaw on both (texture yaw)
+    const TEXTURE_YAW = -Math.PI / 1.3 + 0; // your existing value
+    panoLow.rotation.y = TEXTURE_YAW;
+    panoHigh.rotation.y = TEXTURE_YAW;
+
+    // Desired tilt DOWN amount (pitch)
+    const TILT_DOWN = Math.PI / 50; // ~16°
+
+    function setInitialViewAndLockPitch() {
+      if (didInitView) return;   // ✅ run only once (prevents flicker on swap)
+      didInitView = true;
+
+      const controls = viewer.getControl();
+
+      // Positive value here, we pass -TILT to tilt DOWN
+      const TILT = Math.PI / 15;     // adjust how much you want to tilt
+      controls.rotateUp(-TILT);      // tilt down
+
+      // No vertical limits (free up/down)
+      if ('minPolarAngle' in controls && 'maxPolarAngle' in controls) {
+        controls.minPolarAngle = 0;          // can look straight up
+        controls.maxPolarAngle = Math.PI;    // can look straight down
+      }
+
+      // Optional: rotation only (no panning)
+      if ('enablePan' in controls) controls.enablePan = false;
+    }
+
+
+    // Apply same camera view when each pano becomes active
+    panoLow.addEventListener('enter', setInitialViewAndLockPitch);
+    panoHigh.addEventListener('enter', setInitialViewAndLockPitch);
+
+    // Start with low; add both to viewer for smooth swap
+    viewer.add(panoLow);
+    viewer.add(panoHigh);
+    viewer.setPanorama(panoLow);
+
+    // Preload + swap high-res when ready
+    panoLow.addEventListener("load", () => {
+      panoHigh.addEventListener("load", () => {
+        viewer.setPanorama(panoHigh, 600); // fade swap
+        console.log("✅ Swapped to high-res panorama");
+      });
+      panoHigh.load();
+    });
+
+    panoHigh.addEventListener("error", (e) => {
+      console.warn("⚠️ Failed to load high-res:", e);
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const closeCard = document.getElementById("closeCard");
+
+      if (closeCard) {
+        closeCard.addEventListener("click", () => {
+          // 🔹 Change this path to wherever you want the button to take you
+          window.location.href = "./../../../index.html";
+          // Example: "../index.html" or "../SubPages/Tower_A.html"
+        });
+      }
+    });
+  </script>
+  <script src="./../../JS/Disbale-Inspect.js"></script>
+  <script src="./../../JS/Image_Loader.js"></script>
+</body>
+
+</html>

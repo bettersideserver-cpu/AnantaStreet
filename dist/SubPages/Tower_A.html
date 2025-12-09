@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang=en><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><title>MDB Lutyen</title><link rel=stylesheet href=site.15dc8534.css><link rel=stylesheet href=site.fcde3778.css><style>@media (width<=600px){.Front{position:fixed;top:55%;left:50%}}</style><body>
+    <script>sessionStorage.setItem("lastTower","A");</script>
+
+    <div id=ui-hint class=ui-hint aria-live=polite role=status>
+        
+        <div class="ui-hint__desktop ui-hint__row">
+            
+            <svg width=18 height=24 aria-hidden=true viewBox="0 0 18 24"><path fill=#fff d="M9 1c3.9 0 7 3.1 7 7v8c0 3.9-3.1 7-7 7s-7-3.1-7-7V8c0-3.9 3.1-7 7-7" opacity=.18 /><rect width=2 height=5 x=8 y=4 fill=#fff rx=1 /><rect width=8 height=9 x=5 y=10 fill=#fff opacity=.4 rx=4 /></svg>
+            
+        </div>
+
+        
+        <div class="ui-hint__row ui-hint__touch">
+            
+            <svg width=18 height=24 aria-hidden=true viewBox="0 0 24 24"><path fill=#fff d="M12 2a4 4 0 0 1 4 4v4h1.2a2.8 2.8 0 0 1 2.8 2.8V16c0 3.3-2.7 6-6 6H9.5A5.5 5.5 0 0 1 4 16.5V11a3 3 0 0 1 6 0v3h1V6a4 4 0 0 1 1-2.7Z" opacity=.28 /><rect width=2 height=9 x=11 y=5 fill=#fff rx=1 /></svg>
+            
+        </div>
+    </div>
+    <button class=close-btn id=closeCard>←</button>
+    <div id=infoCard class=info-card>
+        <div class=info-content>
+
+            <h2 id=modalTitle>Tower A</h2>
+
+            
+            <div class=info-details id=details></div>
+
+            <button class=explore-btn id=navigateButton>Explore</button>
+            <button class=enquiry-btn id=openEnquiry>Enquiry Call</button>
+
+        </div>
+    </div>
+    
+    <div id=floorTip class=floortip aria-hidden=true></div>
+    <div class=Front>
+        <div class=image-wrapper>
+            
+            <img id=mainImage src=Tower_A.da3ace68.webp data-full=./../images/Tower_A.jpg alt=Tower_2 fetchpriority=high decoding=async width=3840 height=5830 class=blur-up>
+            <div class=Cutout>
+                <svg xmlns:xmlns=http://www.w3.org/2000/svg viewBox="0 0 3840 5830"><path id=Floor_1 d="m849.94 3735.52 1861.8-115.09v-5.94h-4.33l-7.23-68.66-1835 87.4-1.8 13.33-3.89 20.44 5.36.47-2.38 8.24h7.19l-7.86 36.02Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_2 d="m865.18 3633.23 1835-87.4-.42-7.1 1.49-.2-.61-5.78h-2.24l.07-1.72 1.69-.34-.07-2.33h-2.44l.27-3.95h1.59s-.1-2.67-.2-2.67h-1.8l-.1-4.46h1.83l-.14-1.96-1.83.14.14-3.1h1.72l-.54-4.78h-2.26l-.05-5.45 1.45.27.23-3.11-2.03.77-.41-10.86-1886.72 54.38-5.51 44.33 69.83.63-1.81 6.58-4.7 2.7-1.17 4.32-1.54.27-1.17 6.31-1.81 4.05-.99 6.76 5.69-.72 15.36-1.26-.36 8.02Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_3 d="m808.81 3543.57 1886.72-54.38-6.01-59.6-1902.8 22.3c22.2 17.86 34.18 39.04 30.22 65.42l5.83.14s-10.14 9.87-10.03 9.87 3.18.45 3.18.45l-5.44 6.26Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_4 d="m786.72 3451.89 1902.8-22.3 1.26-.54v-1.55l-2.37.17.37-5.2h1.69l-.44-5.2-2.37-.47-.54-2.43 2.17-.57-.03-1.42-1.73.17.14-4.73 1.05-.17.03-2.09h-2.03l-.03-4.05 1.9-1.12-.75-1.25h-1.25l.2-2.26 1.56-.34-.81-5.3h-1.39l-.54-4.53 1.52.2.3-1.89h-2.37l-.78-10.9-1914.5-12.25-9.49 72.96c6.95 5.23 16.55 7.9 26.43 17.06" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_5 d="m769.78 3361.83 1914.5 12.25-4.06-43.7-1899.41-41.9Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_6 d="m780.81 3288.48 1899.41 41.9-.95-12.84 1.56-.4-.61-4.87-2.38.2.21-3.04h2.44l-.68-5.34-1.97.48.61-2.23h1.16l-.21-3.25-1.69.21-.88-8.52 1.29-.47-.21-4.53h-2.3l.95-7.23h-2.58l.34-2.03 1.9-1.69-.41-2.09-1883.62-69.86Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_7 d="m792.19 3202.88 1883.62 69.86-6.03-53.19-1861.24-101.5-5.15 1.49-.68 8.11 3.93 8.78-5.96 41.09Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_8 d="m808.54 3118.05 1861.24 101.5-5.19-57.39-1845.12-126.33-5.96 54.6-9.03-.9-.91 5.95 3.43 1.44 3.8 12.61Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_9 d="m819.47 3035.83 1845.12 126.33-4.97-51.27-1831.29-160.03Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_10 d="m828.33 2950.86 1831.29 160.03-4.47-52.58-1810.56-185.75-9.4 57.84Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_11 d="m844.59 2872.56 1810.56 185.75-5.15-51.77-1794.93-211.66Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_12 d="M855.07 2794.88 2650 3006.54l-4.2-49.65-1780.44-237.51-1.62 9.55-7.23-.9-1.44 6.66 2.34 2.35 1.63 19.64-5.42-1.8-1.08 7.57 3.61 22.34Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_13 d="m865.36 2719.38 1780.44 237.51-4.79-51.36-1765.8-261.75Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_14 d="m875.21 2643.78 1765.8 261.75-4.56-47.93L881.9 2571.87l.72 12.89-5.24.09-.63 6.76 2.53 26.04Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_15 d="m881.9 2571.87 1754.55 285.73-5.56-51.36L895.9 2500.06l-6.87 58.93-8.31-.72Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_16 d="m895.9 2500.06 1734.99 306.18-2.98-47.44-1727.4-330.74 1.89 30.73Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_17 d="m900.51 2428.06 1727.4 330.74v-1.94l2.98-.45-4.25-61.45-34.14-8.02-28.1 11.35-1652.06-341.23-2.8 20.09 3.71-.09-1.72 20.55-7.05-.18.09 5.94.63 19.2-4.69-.36Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_18 d="m912.34 2357.06 1568.44 323.96-3.9-51.64-1555.05-337.69Z" class=st0 data-link=./3BHK/Lobby_Top.html /><path id=Floor_19 d="m921.83 2291.69 1555.05 337.69-3.27-47.33L930.05 2227.4Z" class=st0 data-link=./Penthouse/Lobby_Top_Floor_1.html data-name=Floor_19 /><path id=Floor_20 d="m930.05 2227.4 1543.56 354.66-7.14-106.42 81.03-45.19v-2.7l1.63.9 1.08-2.7 2.98-.27-72.41-36.62-1502.04-444.5-.27 2.79-67.03-.99s.36 3.42 0 3.42 1.9.81 1.9.81l1.08 225.08 26.65 6.67-.45 4.6-3.43-.36Z" class=st0 data-link=./Penthouse/Lobby_Top_Floor_1.html data-name=Floor_20 /></svg>
+            </div>
+        </div>
+    </div>
+
+    <div class=enquiry>
+        <div class=overlay id=enquiryOverlay aria-hidden=true>
+            <div class=modal role=dialog aria-labelledby=enquiryTitle>
+                <div class=modal-header>
+                    <div id=enquiryTitle class=title>Request Callback</div>
+                    <button class=close id=closeBtn aria-label=Close>✕</button>
+                </div>
+
+                <div class=modal-body>
+                    <form id=enquiryForm class=form novalidate>
+                        <div class=two>
+                            <input class=input name=firstName placeholder="First Name" required>
+                            <input class=input name=lastName placeholder="Last Name" required>
+                        </div>
+
+                        <div class=phone>
+                            <select name=dialCode aria-label="Country Code">
+                                <option>+91</option>
+                                <option>+971</option>
+                                <option>+44</option>
+                                <option>+1</option>
+                            </select>
+                            <input type=tel name=phone placeholder="Phone Number" required>
+                        </div>
+
+                        <input class=input type=email name=email placeholder="Email Address" required>
+
+
+
+                        <label class=agree>
+                            <input type=checkbox id=agree>
+                            <span>I agree to the <a href=#>Privacy Policy</a> and
+                                <a href=#>Terms &amp; Conditions</a>.</span>
+                        </label>
+
+                        <button class=submit>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav class=jumpbar role=navigation aria-label="Quick jumps">
+        <div class=jumpbar-inner>
+            <button class=jumpchip onclick="location.href='./../index.html'">Home</button>
+            <button class=jumpchip onclick="location.href='GodEye/Garden.html'">Garden</button>
+            <button class=jumpchip onclick="location.href='GodEye/SidePath.html'">SidePath</button>
+            <button class=jumpchip onclick="location.href='GodEye/Pool.html'">Pool</button>
+            <button class=jumpchip onclick="location.href='GodEye/Commercial.html'">Commercial</button>
+            <button class=jumpchip onclick="location.href='Tower_B.html'">Tower B</button>
+            
+        </div>
+    </nav>
+
+
+
+
+
+
+
+    <script src=Tower_A.79e1e0d5.js></script>
+    <script src=Tower_A.538f1dc4.js></script>
+
+    <script>const closeCard=document.getElementById("closeCard");closeCard&&closeCard.addEventListener("click",()=>{window.location.href="./../index.html"});</script>
+    <script src=Tower_A.1f247ccd.js></script>
+    <script src=Tower_A.d7354e7e.js></script>
+    <script src=site.85054d48.js></script>
+    <script src=site.c50a11a2.js></script>
+
+
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang=en><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1"><title>MDB Lutyen</title><link rel=stylesheet href=Lobby_Top.06892e0e.css><style>body{user-select:none;margin:0;overflow:hidden}.lobby-top{background-color:#d3c9ca;justify-content:center;align-items:center;width:100vw;height:100vh;display:flex;overflow:hidden}.content-wrapper{display:inline-block;position:relative}.content-wrapper img{user-select:none;pointer-events:none;width:auto;height:100vh;display:block}.touch-button{color:#fff;cursor:pointer;z-index:10;background:#c4c4c4cc;border:2px solid #0003;border-radius:10px;padding:12px;font-size:16px;position:absolute;transform:translate(-50%,-50%)}.button1{top:40%;left:34%}.button2{top:46%;left:62%}.button3{top:35%;left:57%}.button4{top:25%;left:37%}.button5{top:70%;left:57%}.button6{top:50%;left:35%}.touch-button:hover{background-color:#c0392b}.close-btn2{color:#fff;cursor:pointer;z-index:9999;background-color:#2c2c2c;border:none;border-radius:12px;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;font-size:20px;transition:background-color .3s;display:flex;position:fixed;top:50px;left:90px;box-shadow:0 2px 8px #0000004d}.close-btn2:hover{background-color:#444}@media (width<=600px){.close-btn2{top:50px;left:30px}}:root{--chip-bg:#2b2b2b;--chip-fg:#fff;--chip-fg-dim:#cfcfcf;--chip-bg-hover:#3a3a3a;--chip-ring:#ffffff1f;--bar-bg:#00000059;--bar-blur:10px;--gap:10px;--radius:10px;--chip-pad-y:8px;--chip-pad-x:14px;--chip-fs:12px}.jumpbar{left:50%;bottom:max(16px,env(safe-area-inset-bottom,16px));z-index:9990;-webkit-backdrop-filter:blur(10px);white-space:nowrap;scrollbar-width:none;background:#00000059;border-radius:12px;width:fit-content;max-width:96vw;padding:10px 12px;position:fixed;overflow:auto hidden;transform:translate(-50%);box-shadow:0 6px 24px #00000040}.jumpbar::-webkit-scrollbar{display:none}.jumpbar-inner{white-space:nowrap;justify-content:flex-start;align-items:center;gap:10px;display:inline-flex}.jumpchip{appearance:none;color:#fff;cursor:pointer;white-space:nowrap;background:#2b2b2b;border:1px solid #ffffff1f;border-radius:10px;padding:8px 14px;font:600 12px/1.2 system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial;transition:background .2s,transform 80ms,color .2s,border-color .2s}.jumpchip:hover{background:#3a3a3a}.jumpchip:active{transform:translateY(1px)}.jumpchip.is-accent{color:#1b1b1b;background:#c49a6c;border-color:#c49a6c80}.jumpchip.is-accent:hover{background:#d8a86e}.blur-up{filter:blur(10px);transition:filter .45s,transform .45s,opacity .35s;transform:scale(1.02)}.blur-up.is-loaded{filter:blur();opacity:1;transform:scale(1)}</style><body>
+    <button class=close-btn2 id=closeCard>←</button>
+    <div class=lobby-top>
+        <div class=content-wrapper>
+            
+            <img id=mainImage src=Lobby_Top.0e935014.webp data-full=./../../images/Apartments/3BHK/Lobby_Top.jpg alt=Home fetchpriority=high decoding=async width=3840 height=5830 class=blur-up>
+            <button class="button1 touch-button" onclick="window.location.href='360/Kitchen.html'">
+                Kitchen
+            </button>
+            <button class="button2 touch-button" onclick="window.location.href='360/Lobby.html'">
+                Lobby
+            </button>
+            <button class="button4 touch-button" onclick="window.location.href='360/Room_1.html'">
+                Room 1
+            </button>
+            <button class="button3 touch-button" onclick="window.location.href='360/Room_2.html'">
+                Room 2
+            </button>
+            <button class="button5 touch-button" onclick="window.location.href='360/Room_3.html'">
+                Room 3
+            </button>
+            <button class="button6 touch-button" onclick="window.location.href='360/Dinning.html'">
+                Dinning Table
+            </button>
+        </div>
+    </div>
+
+    
+    <nav class=jumpbar role=navigation aria-label="Quick jumps">
+        <div class=jumpbar-inner>
+            <button class="is-accent jumpchip" id=playWalkthroughBtn>🎥 Walkthrough</button>
+            <button class=jumpchip onclick="location.href='./360/Kitchen.html'">Kitchen</button>
+            <button class=jumpchip onclick="location.href='./360/Lobby.html'">Lobby</button>
+            <button class=jumpchip onclick="location.href='./360/Room_1.html'">Room 1</button>
+            <button class=jumpchip onclick="location.href='./360/Room_2.html'">Room 2</button>
+            <button class=jumpchip onclick="location.href='./360/Room_3.html'">Room 3</button>
+            <button class=jumpchip onclick="location.href='./360/Dinning.html'">Dinning Table</button>
+            <button class="is-accent jumpchip" id=openEnquiry>📞 Request Call Back</button>
+
+
+            
+        </div>
+    </nav>
+    <div id=videoOverlay class=video-overlay>
+        <video id=walkthroughVideo controls preload=none>
+            <source src=Lutyen%20Lobby.e023bc20.webm type=video/webm>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class=callback-enquiry>
+        <div class=callback-overlay id=enquiryOverlay aria-hidden=true>
+            <div class="callback-modal modal" role=dialog aria-labelledby=callbackTitle>
+                <div class=callback-modal-header>
+                    <div id=callbackTitle class=callback-title>Request Callback</div>
+                    <button class=callback-close id=closeBtn aria-label=Close>✕</button>
+                </div>
+
+                <div class=callback-modal-body>
+                    <form id=enquiryForm class=callback-form novalidate>
+                        <div class=callback-two>
+                            <input class=callback-input name=firstName placeholder="First Name" required>
+                            <input class=callback-input name=lastName placeholder="Last Name" required>
+                        </div>
+
+                        <div class=callback-phone>
+                            <select name=dialCode aria-label="Country Code">
+                                <option>+91</option>
+                                <option>+971</option>
+                                <option>+44</option>
+                                <option>+1</option>
+                            </select>
+                            <input type=tel name=phone placeholder="Phone Number" required>
+                        </div>
+
+                        <input class=callback-input type=email name=email placeholder="Email Address" required>
+
+                        <label class=callback-agree>
+                            <input type=checkbox id=agree>
+                            <span>I agree to the <a href=#>Privacy Policy</a> and
+                                <a href=#>Terms &amp; Conditions</a>.</span>
+                        </label>
+
+                        <button class=submit>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("upLobby");e&&e.addEventListener("click",()=>{window.location.href="Lobby_Top_Floor_2.html"})});</script>
+    <script>document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("closeCard");e&&e.addEventListener("click",()=>{let e=sessionStorage.getItem("lastTower")||"A";window.location.href="B"===e?"./../../SubPages/Tower_B.html":"./../../SubPages/Tower_A.html"})});</script>
+
+
+
+    <script src=Tower_A.1f247ccd.js></script>
+    <script src=Lobby_Top.d760aed1.js></script>
+    <script src=Lobby_Top.d707a3b3.js></script>
+    <script src=site.85054d48.js></script>
+    <script src=site.c50a11a2.js></script>
+
+
+

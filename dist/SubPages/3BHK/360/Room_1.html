@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang=en><meta charset=UTF-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1.0"><title>MDB Lutyen</title><link rel=stylesheet href=site.15dc8534.css><link rel=stylesheet href=Lobby_Top.06892e0e.css><body>
+  <button class=close-btn id=closeCard>←</button>
+  <div class=main-container>
+    <div class=image-container></div>
+  </div>
+  
+  <nav class=jumpbar role=navigation aria-label="Quick jumps">
+    <div class=jumpbar-inner>
+      <button class="is-accent jumpchip" id=playWalkthroughBtn>🎥 Walkthrough</button>
+      <button class=jumpchip onclick="location.href='./../Lobby_Top.html'">MAP</button>
+      <button class=jumpchip onclick="location.href='Kitchen.html'">Kitchen</button>
+      <button class=jumpchip onclick="location.href='Lobby.html'">Lobby</button>
+      <button class=jumpchip onclick="location.href='Room_2.html'">Room 2</button>
+      <button class=jumpchip onclick="location.href='Room_3.html'">Room 3</button>
+      <button class=jumpchip onclick="location.href='Dinning.html'">Dinning Table</button>
+      <button class="is-accent jumpchip" id=openEnquiry>📞 Request Call Back</button>
+      
+    </div>
+  </nav>
+  <div id=videoOverlay class=video-overlay>
+    <video id=walkthroughVideo controls preload=none>
+      <source src=Lutyen%20Lobby.e023bc20.webm type=video/mp4>
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  
+  <div class=callback-enquiry>
+    <div class=callback-overlay id=enquiryOverlay aria-hidden=true>
+      <div class="callback-modal modal" role=dialog aria-labelledby=callbackTitle>
+        <div class=callback-modal-header>
+          <div id=callbackTitle class=callback-title>Request Callback</div>
+          <button class=callback-close id=closeBtn aria-label=Close>✕</button>
+        </div>
+
+        <div class=callback-modal-body>
+          <form id=enquiryForm class=callback-form novalidate>
+            <div class=callback-two>
+              <input class=callback-input name=firstName placeholder="First Name" required>
+              <input class=callback-input name=lastName placeholder="Last Name" required>
+            </div>
+
+            <div class=callback-phone>
+              <select name=dialCode aria-label="Country Code">
+                <option>+91</option>
+                <option>+971</option>
+                <option>+44</option>
+                <option>+1</option>
+              </select>
+              <input type=tel name=phone placeholder="Phone Number" required>
+            </div>
+
+            <input class=callback-input type=email name=email placeholder="Email Address" required>
+
+            <label class=callback-agree>
+              <input type=checkbox id=agree>
+              <span>I agree to the <a href=#>Privacy Policy</a> and
+                <a href=#>Terms &amp; Conditions</a>.</span>
+            </label>
+
+            <button class=submit>Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js integrity=... crossorigin=anonymous referrerpolicy=no-referrer></script>
+  <script src=https://cdn.jsdelivr.net/npm/panolens@0.12.0/build/panolens.min.js></script>
+
+  
+  <script>const LOW_SRC="./../../../images/Thumbnail/Apartments/3BHK/360/Room_1.webp",HIGH_SRC="./../../../images/Apartments/3BHK/360/Room_1.jpg",imageContainer=document.querySelector(".image-container"),panoLow=new PANOLENS.ImagePanorama("./../../../images/Thumbnail/Apartments/3BHK/360/Room_1.webp"),panoHigh=new PANOLENS.ImagePanorama("./../../../images/Apartments/3BHK/360/Room_1.jpg"),viewer=new PANOLENS.Viewer({container:imageContainer,autoRotate:!1,autoRotateSpeed:.1,controlBar:!1,cameraFov:70});let didInitView=!1;const TEXTURE_YAW=-Math.PI/2+-.3;panoLow.rotation.y=TEXTURE_YAW,panoHigh.rotation.y=TEXTURE_YAW;const TILT_DOWN=Math.PI/20;function setInitialViewAndLockPitch(){if(didInitView)return;didInitView=!0;let e=viewer.getControl(),a=-Math.PI/40;e.rotateUp(-a),"minPolarAngle"in e&&"maxPolarAngle"in e&&(e.minPolarAngle=0,e.maxPolarAngle=Math.PI),"enablePan"in e&&(e.enablePan=!1)}panoLow.addEventListener("enter",setInitialViewAndLockPitch),panoHigh.addEventListener("enter",setInitialViewAndLockPitch),viewer.add(panoLow),viewer.add(panoHigh),viewer.setPanorama(panoLow),panoLow.addEventListener("load",()=>{panoHigh.addEventListener("load",()=>{viewer.setPanorama(panoHigh,600),console.log("✅ Swapped to high-res panorama")}),panoHigh.load()}),panoHigh.addEventListener("error",e=>{console.warn("⚠️ Failed to load high-res:",e)});</script>
+  <script>document.addEventListener("DOMContentLoaded",()=>{let e=document.getElementById("closeCard");e&&e.addEventListener("click",()=>{window.location.href="./../../../SubPages/3BHK/Lobby_Top.html"})});</script>
+  <script src=Tower_A.1f247ccd.js></script>
+  <script src=Lobby_Top.d760aed1.js></script>
+  <script src=Lobby_Top.d707a3b3.js></script>
+  <script src=site.85054d48.js></script>
+  <script src=site.c50a11a2.js></script>
+
+
