@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+}
+
+#hero-scroll {
+  height: 300vh;               /* scroll length */
+  position: relative;
+  background: black;
+}
+
+#canvas {
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+video {
+  display: none;               /* hidden source */
+}
+
+.content {
+  min-height: 100vh;
+  padding: 100px;
+  background: #fff;
+}

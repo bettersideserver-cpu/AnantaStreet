@@ -5,6 +5,65 @@ body {
 }
 
 
+/* ABOUT – MINIMAL NAV STYLE */
+.about-nav {
+    position: fixed;
+    top: 26px;
+    right: 26px;
+    z-index: 15000;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 18px;
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+    font-weight: 500;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    transition: all 0.3s ease;
+}
+
+/* GOLD LINE */
+.about-line {
+    width: 3px;
+    height: 16px;
+    background: #FEBD14;
+    border-radius: 2px;
+}
+
+/* HOVER */
+.about-nav:hover {
+    background: #7e9351;
+    color: #000;
+}
+
+.about-nav:hover .about-line {
+    background: #000;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .about-nav {
+        top: 16px;
+        right: 16px;
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    .about-line {
+        height: 14px;
+    }
+}
 
 
 /* Floor hover tooltip */
@@ -841,7 +900,7 @@ body {
 .jumpchip {
     appearance: none;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    background:#7e9351;
+    background: #7e9351;
     color: #fff;
     /* color: #DAA520; */
     /* color: #FFC30B; */
