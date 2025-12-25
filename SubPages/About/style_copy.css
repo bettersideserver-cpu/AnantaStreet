@@ -3,6 +3,46 @@ body {
 	line-height: normal;
 }
 
+.reveal-title {
+	font-size: 60px;
+	letter-spacing: 0.35em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.reveal-title span {
+	opacity: 0;
+	transform: translateY(40px);
+	filter: blur(6px);
+	animation: reveal 0.8s ease forwards;
+}
+
+.reveal-title span:nth-child(n) {
+	animation-delay: calc(var(--i) * 0.08s);
+}
+
+@keyframes reveal {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+		filter: blur(0);
+	}
+}
+
+/* hide animation */
+.reveal-title.hide span {
+	animation: hide 0.6s ease forwards;
+}
+
+@keyframes hide {
+	to {
+		opacity: 0;
+		transform: translateY(-30px);
+		filter: blur(6px);
+	}
+}
+
 .image,
 .image2,
 .container83,
@@ -28,8 +68,8 @@ body {
 			rgba(0, 0, 0, 0.45),
 			rgba(0, 0, 0, 0.6));
 
-	backdrop-filter: blur(3px);
-	-webkit-backdrop-filter: blur(3px);
+	backdrop-filter: blur(1px);
+	-webkit-backdrop-filter: blur(1px);
 
 	filter: brightness(0.82) contrast(1.05);
 }
@@ -756,7 +796,7 @@ body {
 	left: 39.4px;
 	width: 507px;
 	height: 104px;
-	font-size: 16px;
+	font-size: 22px;
 	color: rgba(255, 255, 255, 0.8);
 	font-family: Abel;
 }
@@ -1013,7 +1053,7 @@ body {
 	left: 39.4px;
 	width: 468px;
 	height: 156px;
-	font-size: 16px;
+	font-size: 22px;
 	color: rgba(255, 255, 255, 0.8);
 	font-family: Abel;
 }
@@ -1186,7 +1226,7 @@ body {
 	left: 39.4px;
 	width: 503px;
 	height: 208px;
-	font-size: 16px;
+	font-size: 22px;
 	color: rgba(255, 255, 255, 0.8);
 	font-family: Abel;
 }
@@ -1408,7 +1448,7 @@ body {
 	left: 36.4px;
 	width: 491px;
 	height: 156px;
-	font-size: 16px;
+	font-size: 22px;
 	color: rgba(255, 255, 255, 0.8);
 	font-family: Abel;
 }

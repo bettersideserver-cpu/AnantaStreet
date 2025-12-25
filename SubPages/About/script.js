@@ -95,3 +95,35 @@ document.addEventListener("DOMContentLoaded", () => {
     new ScrollVideoSection(section);
   });
 });
+
+
+const title = document.querySelector('.reveal-title');
+const letters = title.querySelectorAll('span');
+
+// assign stagger index
+letters.forEach((span, i) => {
+  span.style.setProperty('--i', i);
+});
+
+// function playTitle() {
+//   title.classList.remove('hide');
+
+//   // hide after visible
+//   setTimeout(() => {
+//     title.classList.add('hide');
+//   }, 2600);
+// }
+
+/* =========================
+   START DELAY (IMPORTANT)
+========================= */
+
+// delay before first reveal (ms)
+const START_DELAY = 1500; // ← change this
+
+setTimeout(() => {
+  playTitle();
+}, START_DELAY);
+
+/* OPTIONAL LOOP */
+// setInterval(playTitle, 5000);
