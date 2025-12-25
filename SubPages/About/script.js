@@ -122,7 +122,7 @@ letters.forEach((span, i) => {
 const START_DELAY = 1500; // ← change this
 
 setTimeout(() => {
-  playTitle();
+  //playTitle();
 }, START_DELAY);
 
 /* OPTIONAL LOOP */
