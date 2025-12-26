@@ -1,0 +1,325 @@
+.retail-plaza {
+  background-color: #c4c4c4;
+  width: 100%;
+  min-width: 1920px;
+  min-height: 1080px;
+  position: relative;
+}
+
+.retail-plaza .text-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1519px;
+  height: 953px;
+  display: flex;
+  opacity: 0.2;
+}
+
+.retail-plaza .text-text-background {
+  margin-top: 209.0px;
+  width: 341.35px;
+  height: 613.76px;
+  margin-left: 594.2px;
+  display: flex;
+}
+
+.retail-plaza .text-wrapper {
+  margin-top: 91.2px;
+  width: 342px;
+  height: 614px;
+  margin-left: -149px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #00000033;
+  font-size: 613.8px;
+  letter-spacing: 0;
+  line-height: 613.8px;
+  white-space: nowrap;
+}
+
+.retail-plaza .image-and-text-area {
+  position: absolute;
+  top: 251px;
+  left: 235px;
+  width: 1184px;
+  height: 744px;
+  display: flex;
+}
+
+.retail-plaza .text-area {
+  margin-top: 90.8px;
+  width: 568px;
+  height: 653.6px;
+  position: relative;
+}
+
+.retail-plaza .div {
+  position: absolute;
+  top: -285px;
+  left: 818px;
+  width: 744px;
+  font-family: "Abhaya Libre SemiBold-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: 45px;
+}
+
+.retail-plaza .container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 568px;
+  height: 96px;
+  display: flex;
+}
+
+.retail-plaza .container-2 {
+  width: 4px;
+  height: 96px;
+  background-color: #000000;
+}
+
+.retail-plaza .container-wrapper {
+  position: absolute;
+  top: 128px;
+  left: 0;
+  width: 251px;
+  height: 16px;
+  display: flex;
+}
+
+.retail-plaza .container-3 {
+  margin-top: 7.5px;
+  width: 48px;
+  height: 1px;
+  background-color: #00000033;
+}
+
+.retail-plaza .retail {
+  position: absolute;
+  top: 144px;
+  left: 0;
+  width: 568px;
+  height: 166px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.retail-plaza .container-4 {
+  height: 79.2px;
+  position: relative;
+}
+
+.retail-plaza .div-wrapper {
+  left: 0;
+  width: 52px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .text-wrapper-2 {
+  margin-top: 0.2px;
+  width: 53px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.retail-plaza .text-text-background-2 {
+  left: 42px;
+  width: 40px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .text-wrapper-3 {
+  margin-top: 0.2px;
+  width: 41px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.retail-plaza .text-text-background-3 {
+  left: 78px;
+  width: 20px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .text-wrapper-4 {
+  margin-top: 0.2px;
+  width: 21px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.retail-plaza .text-text-background-4 {
+  left: 101px;
+  width: 40px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .text-text-background-5 {
+  left: 136px;
+  width: 16px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .text-wrapper-5 {
+  margin-top: 0.2px;
+  width: 17px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.retail-plaza .text-text-background-6 {
+  left: 152px;
+  width: 16px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .text-text-background-7 {
+  left: 0;
+  width: 48px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .text-wrapper-6 {
+  margin-top: 0.2px;
+  width: 49px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.retail-plaza .text-text-background-8 {
+  left: 39px;
+  width: 16px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .text-text-background-9 {
+  left: 55px;
+  width: 40px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .text-text-background-10 {
+  left: 90px;
+  width: 36px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .text-wrapper-7 {
+  margin-top: 0.2px;
+  width: 36px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.retail-plaza .text-text-background-11 {
+  left: 121px;
+  width: 40px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.retail-plaza .container-5 {
+  position: absolute;
+  top: 467px;
+  left: 1px;
+  width: 568px;
+  height: 148px;
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-color: #000000;
+}
+
+.retail-plaza .paragraph-text {
+  position: absolute;
+  top: 330px;
+  left: 39px;
+  width: 503px;
+  height: 208px;
+  display: flex;
+}
+
+.retail-plaza .ananta-enclave-is {
+  margin-top: 5.2px;
+  width: 495px;
+  height: 182px;
+  margin-left: -30.4px;
+  font-family: "Abhaya Libre Medium-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffffcc;
+  font-size: 34px;
+  letter-spacing: 0;
+  line-height: 26px;
+}

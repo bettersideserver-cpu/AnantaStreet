@@ -1,0 +1,295 @@
+.vice-tower {
+  background-color: #c4c4c4;
+  width: 100%;
+  min-width: 1920px;
+  min-height: 1080px;
+  position: relative;
+}
+
+.vice-tower .background-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1519px;
+  height: 814px;
+  display: flex;
+  opacity: 0.2;
+}
+
+.vice-tower .text-text-background {
+  margin-top: 118.3px;
+  width: 341.35px;
+  height: 613.76px;
+  margin-left: 594.2px;
+  display: flex;
+}
+
+.vice-tower .text-wrapper {
+  margin-top: 179.2px;
+  width: 342px;
+  height: 614px;
+  margin-left: -10px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #00000033;
+  font-size: 613.8px;
+  letter-spacing: 0;
+  line-height: 613.8px;
+  white-space: nowrap;
+}
+
+.vice-tower .photo-and-text-area {
+  position: absolute;
+  top: 240px;
+  left: 246px;
+  width: 1184px;
+  height: 654px;
+  display: flex;
+}
+
+.vice-tower .container {
+  width: 568px;
+  height: 653.6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vice-tower .easy-connectivity {
+  margin-left: 778px;
+  width: 854px;
+  height: 90px;
+  margin-top: -202px;
+  font-family: "Abhaya Libre SemiBold-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: 45px;
+}
+
+.vice-tower .container-wrapper {
+  width: 568px;
+  margin-top: 112px;
+  display: flex;
+}
+
+.vice-tower .div {
+  width: 4px;
+  height: 96px;
+  background-color: #000000;
+}
+
+.vice-tower .div-2 {
+  height: 166.4px;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vice-tower .container-2 {
+  width: 568px;
+  height: 79.2px;
+  position: relative;
+}
+
+.vice-tower .div-wrapper {
+  left: 0;
+  width: 48px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.vice-tower .text-wrapper-2 {
+  margin-top: 0.2px;
+  width: 49px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.vice-tower .text-text-background-2 {
+  left: 43px;
+  width: 16px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.vice-tower .text-wrapper-3 {
+  margin-top: 0.2px;
+  width: 17px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.vice-tower .text-text-background-3 {
+  left: 59px;
+  width: 36px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.vice-tower .text-wrapper-4 {
+  margin-top: 0.2px;
+  width: 36px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.vice-tower .text-text-background-4 {
+  left: 91px;
+  width: 40px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.vice-tower .text-wrapper-5 {
+  margin-top: 0.2px;
+  width: 41px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.vice-tower .text-text-background-5 {
+  left: 0;
+  width: 44px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.vice-tower .text-wrapper-6 {
+  margin-top: 0.2px;
+  width: 45px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.vice-tower .text-text-background-6 {
+  left: 36px;
+  width: 40px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.vice-tower .text-text-background-7 {
+  left: 77px;
+  width: 52px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.vice-tower .text-wrapper-7 {
+  margin-top: 0.2px;
+  width: 53px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.vice-tower .text-text-background-8 {
+  left: 128px;
+  width: 40px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.vice-tower .text-text-background-9 {
+  left: 164px;
+  width: 24px;
+  position: absolute;
+  top: -7px;
+  height: 79px;
+  display: flex;
+}
+
+.vice-tower .text-wrapper-8 {
+  margin-top: 0.2px;
+  width: 24px;
+  height: 80px;
+  font-family: "Arimo-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 72px;
+  letter-spacing: 0;
+  line-height: 79.2px;
+  white-space: nowrap;
+}
+
+.vice-tower .paragraph {
+  margin-left: 39.4px;
+  width: 507px;
+  height: 104px;
+  margin-top: 49.7px;
+  display: flex;
+}
+
+.vice-tower .vice-tower-is-the {
+  margin-top: -20.6px;
+  width: 499px;
+  height: 260px;
+  margin-left: -20px;
+  font-family: "Abhaya Libre Medium-Regular", Helvetica;
+  font-weight: 400;
+  color: #ffffffde;
+  font-size: 34px;
+  letter-spacing: 0;
+  line-height: 26px;
+}
+
+.vice-tower .container-3 {
+  height: 148px;
+  margin-top: 12.3px;
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-color: #000000;
+}

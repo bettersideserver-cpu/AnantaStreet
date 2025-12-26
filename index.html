@@ -32,8 +32,6 @@
         }
 
         .info-card {
-            top: -100px;
-            left: -50px;
             position: fixed;
             background-color: transparent;
             /* No blocking layer */
@@ -156,9 +154,10 @@
     </style>
 </head>
 
-<body><a href="SubPages/About/About.html" class="about-nav">
+<body>
+    <a href="SubPages/About/About copy.html.html" class="about-nav">
         <span class="about-line"></span>
-        <span class="about-text">About us</span>
+        <span class="about-text">ABOUT US</span>
     </a>
 
     <!-- Splash / Welcome Overlay -->
@@ -266,9 +265,9 @@
     <!-- Hotspot overlay (empty container, JS will size/position it) -->
     <div class="hs-layer" id="hsLayer">
         <!-- Example hotspots: use % relative to the image -->
-        <button class="hs-dot" style="top:52.5%; left:60%;" onclick="location.href='SubPages/GodEye/Dome.html'">
+        <!-- <button class="hs-dot" style="top:52.5%; left:60%;" onclick="location.href='SubPages/GodEye/Dome.html'">
             <img src="images/360_img.png" alt="Dome">
-        </button>
+        </button> -->
         <button class="hs-dot" style="top:57%; left:13%;" onclick="location.href='SubPages/GodEye/AnantaStreet.html'">
             <img src="images/360_img.png" alt="Dome">
         </button>
@@ -471,10 +470,10 @@
                     img: 'images/Thumbnail/Icon/Tower_A.jpg',
                     link: 'SubPages/Tower_A.html',
                     detailsHTML: `
-          <div><strong>Total Units:</strong> 112</div>
-          <div><strong>Apartments:</strong> 107</div>
-          <div><strong>Penthouse:</strong>5</div>
-          <div><strong>Bedroom:</strong>3BHK+1</div>
+          <div><strong>1st Floor:</strong> Retails</div>
+          <div><strong>2nd Floor:</strong> Retails</div>
+          <div><strong>3rd Floor:</strong> Office</div>
+          <div><strong>4th Floor:</strong> Ayali Dev's Office</div>
         `
                 },
                 Tower_B: {
@@ -483,10 +482,7 @@
                     img: 'images/Thumbnail/Icon/Tower_B.jpg',
                     link: 'SubPages/Tower_B.html',
                     detailsHTML: `
-          <div><strong>Total Units:</strong> 219</div>
-          <div><strong>Apartments:</strong> 213</div>
-          <div><strong>Penthouse:</strong>6</div>
-          <div><strong>Bedroom:</strong>3BHK</div>
+          <div><strong>All Floor:</strong> Retails & Cafe</div>
         `
                 },
                 Tower_C: {
@@ -495,10 +491,21 @@
                     img: 'images/Thumbnail/Icon/Tower_C.jpg',
                     link: 'SubPages/Tower_C.html',
                     detailsHTML: `
-          <div><strong>Total Units:</strong> 219</div>
-          <div><strong>Apartments:</strong> 213</div>
-          <div><strong>Penthouse:</strong>6</div>
-          <div><strong>Bedroom:</strong>3BHK</div>
+          <div><strong>1st Floor:</strong> Restaurents</div>
+          <div><strong>2nd Floor:</strong> Retails</div>
+          <div><strong>3rd Floor:</strong> Terrace Restaurents</div>
+        `
+                },
+                Tower_D: {
+                    title: 'Tower_D',
+                    lowImg: 'images/Thumbnail/Icon/Tower_D.webp',
+                    img: 'images/Thumbnail/Icon/Tower_D.jpg',
+                    link: 'SubPages/Tower_D.html',
+                    detailsHTML: `
+          <div><strong>1st Floor:</strong> Retails & Co-Working</div>
+          <div><strong>2nd Floor:</strong> Retails & Benquet</div>
+          <div><strong>3rd Floor:</strong> Gym</div>
+          <div><strong>4th Floor:</strong> Pool Party</div>
         `
                 }
             };
@@ -577,7 +584,7 @@
                     e.stopPropagation();
 
                     // which tower?
-                    const key = (path.getAttribute('data-name') || path.id || '').trim();
+                    const key = path.id;
                     const info = INFO[key];
                     if (!info) return; // ignore any other paths
 
@@ -642,7 +649,7 @@
 
 
 
-    <script src="JS/Disbale-Inspect.js"></script>
+    <!-- <script src="JS/Disbale-Inspect.js"></script> -->
 </body>
 
 </html>
