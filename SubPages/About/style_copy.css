@@ -3,6 +3,36 @@ body {
   line-height: normal;
 }
 
+
+
+.about-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255,255,255,0.06),
+      rgba(0,0,0,0.55)
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,0.25),
+      rgba(0,0,0,0.65)
+    );
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 40px 120px rgba(0,0,0,0.6);
+}
+
+
+
+
 .close-btn {
   position: fixed;
   top: 50px;
@@ -81,11 +111,11 @@ body {
       rgba(255, 255, 255, 0.04),
       rgba(0, 0, 0, 0.05)),
     linear-gradient(180deg,
-      rgba(0, 0, 0, 0.25),
-      rgba(0, 0, 0, 0.30));
+      rgba(0, 0, 0, 0.10),
+      rgba(0, 0, 0, 0.25));
 
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
 
   filter: brightness(.82) contrast(1.05);
 
@@ -113,6 +143,45 @@ body {
   opacity: 1;
   transition: opacity 1.6s ease; /* cinematic fade */
 }
+.about-us {
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  opacity: 0.85;
+}
+
+.about-us b {
+  text-shadow:
+    0 4px 16px rgba(0,0,0,0.6);
+}
+.ananta-streettest {
+  position: relative;
+}
+
+.ananta-street2 {
+  font-size: 72px;
+  font-weight: 500;
+  letter-spacing: -1px;
+
+  text-shadow:
+    0 12px 40px rgba(0,0,0,0.7),
+    0 0 20px rgba(255,255,255,0.08);
+}
+.ananta-streettest::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  transform: translateX(-50%);
+
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d4af37,
+    transparent
+  );
+}
 
 
 
@@ -120,7 +189,7 @@ body {
   width: 100%;
   height: 730px;
   position: relative;
-  background-color: #ffffff00;
+  background-color: #bd81123d;
   overflow: hidden;
   text-align: left;
   font-size: 613.76px;
@@ -1397,7 +1466,7 @@ body {
   color: #ffffffcc;
   font-size: 34px;
   letter-spacing: 0;
-  line-height: 26px;
+  line-height: 36px;
 }
 
 
@@ -1761,7 +1830,7 @@ body {
   color: #ffffff;
   font-size: 34px;
   letter-spacing: 0;
-  line-height: 26px;
+  line-height: 36px;
   text-align: left;
 }
 
@@ -2079,7 +2148,7 @@ body {
   color: #ffffffde;
   font-size: 34px;
   letter-spacing: 0;
-  line-height: 26px;
+  line-height: 36px;
   text-align: left;
 }
 

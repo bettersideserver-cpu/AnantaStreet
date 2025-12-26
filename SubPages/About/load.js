@@ -1,4 +1,4 @@
-const AUTOPLAY_SECONDS = 1.5; // ← CHANGE THIS (seconds)
+const AUTOPLAY_SECONDS = 1; // ← CHANGE THIS (seconds)
 const sections = document.querySelectorAll(".scroll-video");
 let previewReadyCount = 0;
 
