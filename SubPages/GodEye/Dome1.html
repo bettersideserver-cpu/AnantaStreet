@@ -17,10 +17,12 @@
   <!-- Bottom Center Panel -->
   <nav class="jumpbar" role="navigation" aria-label="Quick jumps">
     <div class="jumpbar-inner">
-      <button class="jumpchip" onclick="location.href='../../index.html'">Home</button>
-      <button class="jumpchip" onclick="location.href='SubPages/GodEye/AnantaStreet.html'">AnantaStreet</button>
-      <button class="jumpchip" onclick="location.href='SubPages/GodEye/RightEntry.html'">Right Entry</button>
-      <button class="jumpchip" onclick="location.href='SubPages/GodEye/BackSide.html'">BackSide</button>
+      <button class="jumpchip" onclick="location.href='../Tower_C.html'">Tower</button>
+            <button class="jumpchip" onclick="location.href='Dome2.html'">Dome 2</button>
+            <button class="jumpchip" onclick="location.href='Rest1.html'">Terrace Restaurant 1</button>
+            <button class="jumpchip" onclick="location.href='Rest2.html'">Terrace Restaurant 2</button>
+            <button class="jumpchip" onclick="location.href='GodEye/Rest3.html'">Ground Restaurant 1</button>
+            <button class="jumpchip" onclick="location.href='GodEye/Rest4.html'">Ground Restaurant 2</button>
       <!-- add more as you like -->
     </div>
   </nav>
@@ -52,7 +54,7 @@
     let didInitView = false;
 
     // Keep the same initial yaw on both (texture yaw)
-    const TEXTURE_YAW = -Math.PI / 1.3 + 0; // your existing value
+    const TEXTURE_YAW = -Math.PI / 1.3 + 1.4; // your existing value
     panoLow.rotation.y = TEXTURE_YAW;
     panoHigh.rotation.y = TEXTURE_YAW;
 
@@ -66,7 +68,7 @@
       const controls = viewer.getControl();
 
       // Positive value here, we pass -TILT to tilt DOWN
-      const TILT = Math.PI / 15;     // adjust how much you want to tilt
+      const TILT = -Math.PI / 25;     // adjust how much you want to tilt
       controls.rotateUp(-TILT);      // tilt down
 
       // No vertical limits (free up/down)
@@ -110,7 +112,7 @@
       if (closeCard) {
         closeCard.addEventListener("click", () => {
           // 🔹 Change this path to wherever you want the button to take you
-          window.location.href = "./../../../index.html";
+          window.location.href = "./../Tower_C.html";
           // Example: "../index.html" or "../SubPages/Tower_A.html"
         });
       }

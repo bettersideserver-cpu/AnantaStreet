@@ -17,10 +17,11 @@
   <!-- Bottom Center Panel -->
   <nav class="jumpbar" role="navigation" aria-label="Quick jumps">
     <div class="jumpbar-inner">
-      <button class="jumpchip" onclick="location.href='../../../index.html'">Home</button>
-      <button class="jumpchip" onclick="location.href='../Dome.html'">Dome</button>
-      <button class="jumpchip" onclick="location.href='../AnantaStreet.html'">AnantaStreet</button>
-      <button class="jumpchip" onclick="location.href='../RightEntry.html'">Right Entry</button>
+      <button class="jumpchip" onclick="location.href='../../Tower_D.html'">Tower</button>
+      <button class="jumpchip" onclick="location.href='Gym.html'">Gym</button>
+      <button class="jumpchip" onclick="location.href='Banquet_Hall.html'">Banquet Hall</button>
+      <button class="jumpchip" onclick="location.href='Badminton_Court.html'">Badminton Court</button>
+      <button class="jumpchip" onclick="location.href='Co-Work_Space.html'">Co-Work Space</button>
       <!-- add more as you like -->
     </div>
   </nav>
@@ -52,7 +53,7 @@
     let didInitView = false;
 
     // Keep the same initial yaw on both (texture yaw)
-    const TEXTURE_YAW = -Math.PI / 2 + 0; // your existing value
+    const TEXTURE_YAW = -Math.PI / 1.3 + .8; // your existing value
     panoLow.rotation.y = TEXTURE_YAW;
     panoHigh.rotation.y = TEXTURE_YAW;
 
@@ -66,7 +67,7 @@
       const controls = viewer.getControl();
 
       // Positive value here, we pass -TILT to tilt DOWN
-      const TILT = -Math.PI / 25;     // adjust how much you want to tilt
+      const TILT = -Math.PI / 40;     // adjust how much you want to tilt
       controls.rotateUp(-TILT);      // tilt down
 
       // No vertical limits (free up/down)
@@ -110,7 +111,7 @@
       if (closeCard) {
         closeCard.addEventListener("click", () => {
           // 🔹 Change this path to wherever you want the button to take you
-          window.location.href = "../../Tower_D.html";
+          window.location.href = "./../../../index.html";
           // Example: "../index.html" or "../SubPages/Tower_A.html"
         });
       }

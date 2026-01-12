@@ -17,10 +17,11 @@
   <!-- Bottom Center Panel -->
   <nav class="jumpbar" role="navigation" aria-label="Quick jumps">
     <div class="jumpbar-inner">
-      <button class="jumpchip" onclick="location.href='../../../index.html'">Home</button>
-      <button class="jumpchip" onclick="location.href='../Dome.html'">Dome</button>
-      <button class="jumpchip" onclick="location.href='../AnantaStreet.html'">AnantaStreet</button>
-      <button class="jumpchip" onclick="location.href='../RightEntry.html'">Right Entry</button>
+      <button class="jumpchip" onclick="location.href='../../Tower_D.html'">Tower</button>
+      <button class="jumpchip" onclick="location.href='Banquet_Hall.html'">Banquet Hall</button>
+      <button class="jumpchip" onclick="location.href='Pool.html'">Pool</button>
+      <button class="jumpchip" onclick="location.href='Badminton_Court.html'">Badminton Court</button>
+      <button class="jumpchip" onclick="location.href='Co-Work_Space.html'">Co-Work Space</button>
       <!-- add more as you like -->
     </div>
   </nav>
@@ -32,7 +33,8 @@
   <script>
     // 1) Define both images (put both in /images/360/)
     const LOW_SRC = "./../../../images/Thumbnail/360/panorama1.webp"; // lightweight preview
-    const HIGH_SRC = "./../../../images/360/360.0008.jpg";      // full quality
+    // const HIGH_SRC = "./../../../images/360/360.0008.jpg";      // full quality
+    const HIGH_SRC = "./../../../images/360/New/BADMINTON.jpg";      // full quality
 
     const imageContainer = document.querySelector(".image-container");
 
@@ -110,7 +112,7 @@
       if (closeCard) {
         closeCard.addEventListener("click", () => {
           // 🔹 Change this path to wherever you want the button to take you
-          window.location.href = "../../Tower_D.html";
+          window.location.href = "./../../../index.html";
           // Example: "../index.html" or "../SubPages/Tower_A.html"
         });
       }
