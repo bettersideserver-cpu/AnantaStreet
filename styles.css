@@ -382,8 +382,8 @@ body {
 
 /* Modal Background */
 .info-card {
-    top: 0px;
-    left: 0px;
+    top: 100px;
+    left: 50px;
     position: fixed;
     background-color: transparent;
     /* No blocking layer */
