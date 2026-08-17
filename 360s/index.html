@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ananta Street Tour</title>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.105.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/panolens@0.12.0/build/panolens.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap');
+
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #fadeOverlay {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .5s ease;
+            z-index: 9999;
+        }
+
+        #viewer {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ── Tour Nav (pill bar) ── */
+        .tour-nav {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            padding: 6px;
+
+            background: rgba(70, 70, 70, .35);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 18px;
+
+            z-index: 10000;
+        }
+
+        .tour-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            height: 34px;
+            padding: 0 12px;
+
+            background: #2b2b2b;
+            color: #fff;
+
+            border: none;
+            border-radius: 10px;
+
+            font-family: 'Jost', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+
+            cursor: pointer;
+            white-space: nowrap;
+            transition: .25s;
+        }
+
+        .tour-pill svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .tour-pill:hover {
+            background: #353535;
+            transform: translateY(-1px);
+        }
+
+        .tour-pill.active {
+            background: #111;
+        }
+
+        /* ── Back Button ── */
+        #backBtn {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 10000;
+            border: none;
+            border-radius: 12px;
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            background: rgba(0, 0, 0, .55);
+            color: white;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #backBtn:hover {
+            background: white;
+            color: black;
+        }
+
+        #roomInfoCard {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+
+            font-family: 'Jost', sans-serif;
+            text-align: right;
+
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 14px 18px;
+
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+        }
+
+        #roomInfoCard.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        #roomInfoCard .hud-name {
+            font-size: 30px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.02em;
+            margin-bottom: 8px;
+        }
+
+        #roomInfoCard .hud-dims {
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.80);
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+        }
+
+        #roomInfoCard .hud-sqft {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.60);
+            letter-spacing: 0.04em;
+        }
+
+        #roomInfoCard .hud-accent {
+            color: #ffffff;
+        }
+
+        /* ── Desktop: keep nav centered ── */
+        @media (min-width: 769px) {
+            .tour-nav-wrap {
+                position: fixed !important;
+                bottom: 12px !important;
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%) !important;
+                width: auto !important;
+                z-index: 10000 !important;
+            }
+
+            .scroll-arrow {
+                display: none !important;
+            }
+
+            .tour-nav-wrap .tour-nav {
+                position: static !important;
+                transform: none !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+            }
+        }
+
+        /* ── Scroll Arrow Hint ── */
+        .tour-nav-wrap {
+            position: fixed;
+            bottom: 10px;
+            left: 8px;
+            right: 8px;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+        }
+
+        .tour-nav-wrap .tour-nav {
+            position: static;
+            transform: none;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .scroll-arrow {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 34px;
+            flex-shrink: 0;
+            margin-left: 4px;
+            background: rgba(70, 70, 70, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-arrow svg {
+            width: 14px;
+            height: 14px;
+            color: white;
+            opacity: 0.85;
+        }
+
+        .scroll-arrow.hidden {
+            opacity: 0;
+        }
+
+        /* ── Mobile Responsive ── */
+        @media (max-width: 768px) {
+            .tour-nav {
+                bottom: 10px;
+                left: 8px;
+                right: 8px;
+                transform: none;
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                flex-wrap: nowrap;
+                padding: 6px 8px;
+                border-radius: 14px;
+                gap: 6px;
+                max-width: calc(100vw - 16px);
+            }
+
+            .tour-nav::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tour-pill {
+                height: 40px;
+                padding: 0 14px;
+                font-size: 13px;
+                border-radius: 10px;
+                flex-shrink: 0;
+            }
+
+            .tour-pill svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .scroll-arrow {
+                display: flex;
+            }
+
+            #roomInfoCard {
+                top: 16px;
+                right: 10px;
+                left: auto;
+                padding: 10px 14px;
+                border-radius: 12px;
+                max-width: calc(100vw - 100px);
+            }
+
+            #roomInfoCard .hud-name {
+                font-size: 18px;
+                margin-bottom: 4px;
+            }
+
+            #roomInfoCard .hud-dims {
+                font-size: 13px;
+                margin-bottom: 2px;
+            }
+
+            #roomInfoCard .hud-sqft {
+                font-size: 12px;
+            }
+
+            /* Back button — small on mobile */
+            #backBtn {
+                width: 34px !important;
+                height: 34px !important;
+                font-size: 16px !important;
+                top: 12px !important;
+                left: 12px !important;
+                padding: 0 !important;
+                border-radius: 10px !important;
+                background: #2c2c2c !important;
+                backdrop-filter: none !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                line-height: 1 !important;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .tour-pill {
+                height: 38px;
+                padding: 0 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    </div>
+
+    <script> const selectedFloor =
+            sessionStorage.getItem("selectedFloor") || "01";
+    </script>
+    <button id="backBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+        </svg></button>
+
+
+
+    <div id="viewer"></div>
+
+    <!-- Bottom panel with room navigation pills -->
+    <div class="tour-nav-wrap" id="tourNavWrap">
+        <div class="tour-nav" id="tourNav">
+        </div>
+        <div class="scroll-arrow" id="scrollArrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="9 6 15 12 9 18" />
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        function createArrowSVG() {
+
+            const selectedFloor =
+                sessionStorage.getItem("selectedFloor") || "01";
+            const svg = `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+    <defs>
+      <radialGradient id="glassFill" cx="50%" cy="40%" r="60%">
+        <stop offset="0%"  stop-color="rgba(255,255,255,0.28)"/>
+        <stop offset="55%" stop-color="rgba(255,255,255,0.10)"/>
+        <stop offset="100%" stop-color="rgba(255,255,255,0.04)"/>
+      </radialGradient>
+      <linearGradient id="glassHighlight" x1="50%" y1="0%" x2="50%" y2="100%">
+        <stop offset="0%"  stop-color="rgba(255,255,255,0.35)"/>
+        <stop offset="45%" stop-color="rgba(255,255,255,0)"/>
+      </linearGradient>
+      <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+        <feOffset dx="0" dy="2" result="offsetblur"/>
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="0.45"/>
+        </feComponentTransfer>
+        <feMerge>
+          <feMergeNode/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <radialGradient id="dotFill" cx="50%" cy="45%" r="50%">
+        <stop offset="0%"  stop-color="#123a8a"/>
+        <stop offset="100%" stop-color="#0A1F44"/>
+      </radialGradient>
+    </defs>
+    <g filter="url(#softShadow)">
+      <circle cx="64" cy="64" r="44"
+    fill="#ffffff"
+              stroke="rgba(255,255,255,0.22)"
+              stroke-width="1.2"/>
+      <circle cx="64" cy="64" r="44"
+              fill="url(#glassHighlight)"
+              opacity="0.9"/>
+      <circle cx="64" cy="64" r="38"
+              fill="none"
+              stroke="rgba(255,255,255,0.08)"
+              stroke-width="1"/>
+    </g>
+    <circle cx="64" cy="64" r="6.5" fill="url(#dotFill)"/>
+    <circle cx="64" cy="64" r="14" fill="#3b3b3b"/>
+  </svg>`;
+
+            return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+        }
+
+        const ARROW_ICON = createArrowSVG();
+
+        const viewer = new PANOLENS.Viewer({
+            container: document.getElementById("viewer"),
+            controlBar: false
+        });
+        viewer.camera.fov = 100;
+        viewer.camera.updateProjectionMatrix();
+
+        const rooms = {
+            1: new PANOLENS.ImagePanorama("images/1.webp"),
+            2: new PANOLENS.ImagePanorama("images/2.webp"),
+            3: new PANOLENS.ImagePanorama("images/3.webp"),
+            4: new PANOLENS.ImagePanorama("images/4.webp"),
+            5: new PANOLENS.ImagePanorama("images/5.webp"),
+            6: new PANOLENS.ImagePanorama("images/6.webp"),
+            7: new PANOLENS.ImagePanorama("images/7.webp"),
+            8: new PANOLENS.ImagePanorama("images/8.webp"),
+            9: new PANOLENS.ImagePanorama("images/9.webp"),
+            10: new PANOLENS.ImagePanorama("images/10.webp"),
+            11: new PANOLENS.ImagePanorama("images/11.webp"),
+            12: new PANOLENS.ImagePanorama("images/12.webp"),
+            13: new PANOLENS.ImagePanorama("images/13.webp"),
+            14: new PANOLENS.ImagePanorama("images/14.webp"),
+            15: new PANOLENS.ImagePanorama("images/15.webp"),
+            16: new PANOLENS.ImagePanorama("images/16.webp"),
+            17: new PANOLENS.ImagePanorama("images/17.webp"),
+            18: new PANOLENS.ImagePanorama("images/18.webp"),
+            19: new PANOLENS.ImagePanorama("images/19.webp"),
+            20: new PANOLENS.ImagePanorama("images/20.webp"),
+            21: new PANOLENS.ImagePanorama("images/21.webp"),
+            22: new PANOLENS.ImagePanorama("images/22.webp"),
+            23: new PANOLENS.ImagePanorama("images/23.webp"),
+            24: new PANOLENS.ImagePanorama("images/24.webp"),
+            25: new PANOLENS.ImagePanorama("images/25.webp"),
+            26: new PANOLENS.ImagePanorama("images/26.webp"),
+            27: new PANOLENS.ImagePanorama("images/27.webp"),
+            28: new PANOLENS.ImagePanorama("images/28.webp"),
+            29: new PANOLENS.ImagePanorama("images/29.webp"),
+            30: new PANOLENS.ImagePanorama("images/30.webp"),
+            31: new PANOLENS.ImagePanorama("images/31.webp")
+
+
+
+        };
+
+        Object.values(rooms).forEach(p => viewer.add(p));
+        Object.values(rooms).forEach(room => { room.fadeDuration = 1200; });
+
+        function lookAtYaw(yaw, pitch = 0) {
+            const r = 5000;
+            const phi = THREE.MathUtils.degToRad(90 - pitch);
+            const theta = THREE.MathUtils.degToRad(yaw);
+            viewer.tweenControlCenter(
+                new THREE.Vector3(
+                    r * Math.sin(phi) * Math.cos(theta),
+                    r * Math.cos(phi),
+                    r * Math.sin(phi) * Math.sin(theta)
+                )
+            );
+        }
+
+        function addHotspot(from, to, yaw, pitch, text) {
+            const spot = new PANOLENS.Infospot(500, ARROW_ICON);
+            const r = 5000;
+            const phi = THREE.Math.degToRad(90 - pitch);
+            const theta = THREE.Math.degToRad(yaw);
+            spot.position.set(
+                r * Math.sin(phi) * Math.cos(theta),
+                r * Math.cos(phi),
+                r * Math.sin(phi) * Math.sin(theta)
+            );
+            spot.addHoverText(text);
+            spot.addEventListener("click", () => {
+                const overlay = document.getElementById("fadeOverlay");
+                viewer.tweenControlCenter(spot.position);
+                setTimeout(() => {
+                    let fov = viewer.camera.fov;
+                    function zoom() {
+                        if (fov > 60) {
+                            fov -= 1.2;
+                            viewer.camera.fov = fov;
+                            viewer.camera.updateProjectionMatrix();
+                            requestAnimationFrame(zoom);
+                        } else {
+                            overlay.style.opacity = 0.25;
+                            viewer.setPanorama(rooms[to]);
+                            viewer.camera.fov = 100;
+                            viewer.camera.updateProjectionMatrix();
+                            setTimeout(() => { overlay.style.opacity = 0; }, 300);
+                            showInfoCard(to);
+                        }
+                    }
+                    zoom();
+                }, 400);
+            });
+            rooms[from].add(spot);
+        }
+
+        const roomData = {
+
+        };
+
+        function showInfoCard(roomKey) {
+            return;
+        }
+
+        function goToRoom(roomName, btn) {
+            // Update active pill
+            document.querySelectorAll('.tour-pill').forEach(p => p.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const overlay = document.getElementById("fadeOverlay");
+            overlay.style.opacity = 0.25;
+            setTimeout(() => {
+                viewer.setPanorama(rooms[roomName]);
+                viewer.camera.fov = 100;
+                viewer.camera.updateProjectionMatrix();
+                overlay.style.opacity = 0;
+                showInfoCard(roomName);
+            }, 300);
+        }
+
+        // Hotspots
+        addHotspot("1", "7", 60, -3, "");
+
+
+
+
+        addHotspot("10", "11", -270, -3, "");
+        addHotspot("10", "14", 170, -3, "");
+          addHotspot("10", "9", 270, -3, "");
+
+
+
+
+
+        addHotspot("2", "8", 183, -3, "");
+        addHotspot("2", "18", 209, -3, "");
+        addHotspot("2", "19", 197, -3, "");
+
+
+ 
+
+
+
+        addHotspot("6", "7", 85, -8, "");
+
+
+
+
+
+        addHotspot("8", "18", -97, -3, "");
+        addHotspot("8", "19", -107, -3, "");
+        addHotspot("8", "20", -145, -7, "");
+        addHotspot("8", "21", -207, -7, "");
+        addHotspot("8", "22", -247, -5, "");
+        addHotspot("8", "2", -90, -3, "");
+        addHotspot("8", "25", -290, -3, "");
+
+
+        addHotspot("22", "8", -370, -3, "");
+
+
+
+ 
+
+
+        addHotspot("4", "5", 137, 3, "");
+
+
+        addHotspot("5", "12", 52, 7, "");
+
+
+
+
+        addHotspot("7", "1", 182, -3, "");
+
+
+
+        addHotspot("9", "10", 91, -3, "");
+        addHotspot("9", "25", -91, -3, "");
+
+
+        addHotspot("25", "8", 17, -5, "");
+        addHotspot("25", "22", -35, -6, "");
+        addHotspot("25", "21", -2, -3, "");
+
+
+        addHotspot("9", "7", -2, -3, "");
+       addHotspot("9", "11", 182, -3, "");
+
+      
+        addHotspot("11", "12", 181, -3, "");
+        addHotspot("11", "15", -99, - 3, "");
+        
+
+
+
+
+        addHotspot("24", "11", 95 - 6, "");
+      
+    
+
+
+        addHotspot("15", "10", 6 - 6, "");
+      
+
+      
+        addHotspot("17", "15", 6 - 6, "");
+        addHotspot("17", "18", 96 - 6, "");
+
+
+        addHotspot("18", "8", -11, -6, "");
+
+
+
+        addHotspot("17", "8", -102, - 6, "");
+
+
+
+
+        addHotspot("19", "8",  167, -6, "");
+         addHotspot("20", "8",  -12, -6, "");
+
+
+        addHotspot("21", "13", 96 - 6, "");
+
+  
+        addHotspot("12", "4", 154, - 3, "");
+         addHotspot("12", "11", -11, - 3, "");
+
+
+        
+      
+        addHotspot("14", "10", -180 - 3, "");
+
+
+        addHotspot("7", "6", 63,-6, "");
+
+
+
+
+
+
+
+
+
+
+
+        document.getElementById("backBtn").addEventListener("click", () => {
+            const tourReferrer = sessionStorage.getItem('tourReferrer');
+            if (tourReferrer) {
+                sessionStorage.removeItem('tourReferrer');
+                window.location.replace(tourReferrer);
+            } else if (document.referrer && !document.referrer.includes(location.pathname)) {
+                window.location.replace(document.referrer);
+            } else {
+                window.location.replace('../');
+            }
+        });
+
+        // Scroll arrow hint
+        const tourNav = document.getElementById('tourNav');
+        const scrollArrow = document.getElementById('scrollArrow');
+        if (tourNav && scrollArrow) {
+            function updateScrollArrow() {
+                const atEnd = tourNav.scrollLeft + tourNav.clientWidth >= tourNav.scrollWidth - 4;
+                scrollArrow.classList.toggle('hidden', atEnd);
+            }
+            tourNav.addEventListener('scroll', updateScrollArrow);
+            window.addEventListener('resize', updateScrollArrow);
+            updateScrollArrow();
+        }
+
+    </script>
+    <script>// Get room from URL
+        const params = new URLSearchParams(window.location.search);
+        const roomId = params.get("room") || "7";
+
+        // Load room
+        if (rooms[roomId]) {
+            viewer.setPanorama(rooms[roomId]);
+            showInfoCard(roomId);
+        }</script>
+    <div id="fadeOverlay"></div>
+
+</body>
+
+</html>

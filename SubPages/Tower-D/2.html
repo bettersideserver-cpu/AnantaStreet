@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <link rel="stylesheet" href="floor-dropdown.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ananta Street</title>
+    <link rel="stylesheet" href="./../../JS/CSS/RequestStyle.css">
+<link rel="stylesheet" href="./../../JS/CSS/HoverEffect.css">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .lobby-top {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: rgba(211, 201, 202, 1); */
+            background-color: #545454;
+        }
+
+.content-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.content-wrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    object-position: center;
+    user-select: none;
+    pointer-events: none;
+}
+        .touch-button {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            padding: 12px 12px;
+            font-size: 16px;
+            background: rgba(196, 196, 196, 0.8);
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .button1 {
+            top: 40%;
+            left: 34%;
+        }
+
+        .button2 {
+            top: 46%;
+            left: 62%;
+        }
+
+        .button3 {
+            top: 35%;
+            left: 57%;
+        }
+
+        .button4 {
+            top: 25%;
+            left: 37%;
+        }
+
+        .button5 {
+            top: 70%;
+            left: 57%;
+        }
+
+        .button6 {
+            top: 50%;
+            left: 35%;
+        }
+
+
+        .touch-button:hover {
+            background-color: #c0392b;
+        }
+
+        .close-btn2 {
+            position: fixed;
+            top: 50px;
+            left: 90px;
+            width: 40px;
+            height: 40px;
+            background-color: #2c2c2c;
+            border-radius: 12px;
+            border: none;
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+            z-index: 9999;
+        }
+
+        .close-btn2:hover {
+            background-color: #444;
+        }
+
+        @media (max-width: 600px) {
+            .close-btn2 {
+                top: 50px;
+                left: 30px;
+
+            }
+
+        }
+
+        /* ===== Bottom Center Jumpbar ===== */
+        :root {
+            --chip-bg: #2b2b2b;
+            /* pill bg */
+            --chip-fg: #fff;
+            /* pill text */
+            --chip-fg-dim: #cfcfcf;
+            --chip-bg-hover: #3a3a3a;
+            /* hover bg */
+            --chip-ring: rgba(255, 255, 255, .12);
+            --bar-bg: rgba(0, 0, 0, .35);
+            /* translucent bar behind chips */
+            --bar-blur: 10px;
+            /* subtle blur on supported browsers */
+            --gap: 10px;
+            --radius: 10px;
+            --chip-pad-y: 8px;
+            --chip-pad-x: 14px;
+            --chip-fs: 12px;
+        }
+
+        /* fixed & centered relative to the viewport */
+        .jumpbar {
+            position: fixed;
+            left: 50%;
+            bottom: max(16px, env(safe-area-inset-bottom, 16px));
+            transform: translateX(-50%);
+            z-index: 9990;
+            width: fit-content;
+            max-width: 96vw;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+
+            /* NEW 👇 */
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            scrollbar-width: none;
+            /* hide scrollbar Firefox */
+        }
+
+        .jumpbar::-webkit-scrollbar {
+            display: none;
+            /* hide scrollbar Chrome/Safari */
+        }
+
+        .jumpbar-inner {
+            display: inline-flex;
+            /* inline-flex keeps them in one line */
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        /* Pills */
+        .jumpchip {
+            appearance: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: #2b2b2b;
+            color: #fff;
+            font: 600 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            padding: 8px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s ease, transform 0.08s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .jumpchip:hover {
+            background: #3a3a3a;
+        }
+
+        .jumpchip:active {
+            transform: translateY(1px);
+        }
+
+        .jumpchip.is-accent {
+            background: #c49a6c;
+            /* bronze */
+            border-color: rgba(196, 154, 108, 0.5);
+            color: #1b1b1b;
+        }
+
+        .jumpchip.is-accent:hover {
+            background: #d8a86e;
+            /* polished amber hover */
+        }
+
+
+        /* optional: bronze accent variant to match your theme */
+        .jumpchip.is-accent {
+            background: #c49a6c;
+            /* bronze */
+            border-color: rgba(196, 154, 108, .5);
+            color: #1b1b1b;
+        }
+
+        .jumpchip.is-accent:hover {
+            background: #d8a86e;
+            /* polished amber on hover */
+        }
+
+        /* quick, soft placeholder look */
+        .blur-up {
+            filter: blur(10px);
+            transform: scale(1.02);
+            transition: filter .45s ease, transform .45s ease, opacity .35s ease;
+        }
+
+        /* once the full image is in */
+        .blur-up.is-loaded {
+            filter: blur(0);
+            transform: scale(1);
+            opacity: 1;
+        }
+    
+        /* ===== SVG HOTSPOT OVERLAY ===== */
+        .sco-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .sco-overlay .st0 {
+            fill: rgba(196, 154, 108, .16);
+            stroke: rgba(255, 255, 255, .45);
+            stroke-miterlimit: 10;
+            stroke-width: 6px;
+            opacity: 1;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: fill .25s ease, stroke .25s ease;
+        }
+
+        .sco-overlay .st0:hover,
+        .sco-overlay .st0.is-active {
+            fill: rgba(196, 154, 108, .45);
+            stroke: #fff;
+        }
+
+        .sco-tip {
+            position: fixed;
+            z-index: 9995;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, .78);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            font: 600 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, -140%);
+            transition: opacity .18s ease;
+        }
+
+        .sco-tip.is-visible {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <button class="close-btn2" id="closeCard">←</button>
+    <div class="lobby-top">
+        <div class="content-wrapper">
+            <!-- <img src="./../../images/Apparments/3BHK/Lobby_Top.jpg" alt="Penthouse Lobby Image" /> -->
+            <img id="mainImage" src="./../../svg-images/Gym_Floor_2.jpg"
+                data-full="./../../svg-images/Gym_Floor_2.jpg" alt="Home" fetchpriority="high"
+                decoding="async" width="3840" height="5830" class="blur-up" />
+
+            <!-- ===== GYM FLOOR 2 HOTSPOTS ===== -->
+            <svg class="sco-overlay"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 3840 2160"
+                 preserveAspectRatio="none"
+                 aria-label="Gym Floor 2 hotspots">
+
+                <path id="Gym" data-name="Gym" data-link="../../360s/index.html?room=3"  data-width="59 ft" data-length="123.3 ft" data-carpet="7616.71 sq.ft" data-super="9901.723 sq.ft"
+                    d="M2116.44 1427.17v455.08h12.67l3.04 3.04h128.21l4-2.96h74.58l2.6 2.6h129.48l2.65-2.65h22.35v-23.07l2.33-2.33h28.83l2 2v23.33h19.58l2.62 2.62h129.63v-2.7l2.21-2.21 76.18-24.29 2.22 2.44 92-31.67v-2.78l41-14.22 2.33-.11 2.44 2.22 92.89-31.89v-2.11l2.44-1.56 2.67.11-6.78-19.78.33-4.22 26.33-9 3.67.22 7.89 22 46.67-16 4.22-.44 1.67 1.67 108.33-36.78.67-2.67 35.78-12.22-4.22-14.11.44-3.44 30.67-10.11 5.78-.67 5 15.33 8.33-3.22 2.67-.89 1.78 2 70.67-23.22v-3.33l35.56-10.89 22.33-30.44 3.22-.11 44.56-60.89-1.56-1.89-.11-1.56 21.89-29v-35l2.78-2.78v-76.22l-3.33-2-.22-6.11h-10.56l-2.33-2.33v-7h-74.22l-3.33 3.33h-91.56l-3.28-3.28h-72.39l-2.69 2.69h-53.86v4.92s-.89 2.22-2.22 2.22h-35.89l-2.5-2.5v-5.28h-70.17l-2.78-2.78v-18.44h-132.22v21.78l-2.61 2.61h-28.61l-2.69-2.69v-21.69h-55.75l-2.67-2.44v-204.39l3.67-3.67v-41.67l-1.75-1.75v-4.42l-2.03-342.78 2.17-3.33h178.83V637.73h-7l-4-2.67v-36.33l3-3h9.5V198.25h-9.17l-2.67-2.67v-22.5h-45l-3.83-2.33h-175.17l-3.08 3.08h-58.75v21.42l-2.58 2.58h-29.08l-2.46-2.46v-22.62h-62.88l-2.25-2.25h-175.08l-1.17 2.25-1.67 2.5 32-.33 1.5 2.17.17 83.83-43.5-.17-.83-63h-3.5l.67 64-3.17 2.33h-55.67v34.67l-3.08 3.08h-93.42v80.58l-2.75 2.75h-48.75v211.42h16.5l2 2s-.17 36.5 0 36.67-2.67 2.67-2.67 2.67v93.83l-2.83 2.83h-12.67v53.61h22.94l5.22 2.56v63.22h59.78l2.44 2.44v216.78l-3.17 3.17v102.61l3.17 3.56.22 13.56-3 2.33v118.89l3 3s.44 104 0 104-3.06 3.06-3.06 3.06l-178.75-.19Z"
+                    class="st0"/>
+
+                <path id="Billiard_s_Table_Tenis" data-name="Billiard_s_Table_Tenis" data-link=""  data-width="59.6 ft" data-length="64.6ft" data-carpet="3835.57 sq.ft" data-super="4986.241 sq.ft"
+                    d="M1055.64 1040.31h19.55l2.67 2.66v16.56l2 2h256.89l2.83-2.84h69.84v-15.61l2.72-2.72h36.17l2.91 2.92v14.91h338.2v-15l2.5-2.5h20.16v-2.05l2.89-1.67V906.75l-2.72-2.72V637.64h-7.17l-2.55-2.56v-37.11l2.28-2.28h7.5V482.64h11.11l2.44-2.45v-40.22h-12.11l-2.06-2.05V191.08h-19.94l-2.83-2.83v-15.28h-14.39l-2.39-2.39h-4.5l-1.97-1.97h-33.81l-2.18 2.18h-4.37l-1.75-1.74h-238.81l-5.13 5.13h-28.43v20.79l-2.88 2.89h-29.12l-2.44-2.44v-22h-29.33l-2.28-2.28h-3.28l-3.58-3.58v377.97h-15.2v42.44h14.23v36h-305.78v13.56h-15.89v76.22l-2.95 2.94v229.06l3.09 3.08z"
+                    class="st0"/>
+
+                <path id="Squash_Court" data-name="Squash_Court" data-link=""  data-width="25 m " data-length="31.3 m" 
+                    d="M1071.75 607.19h288.44v-10.44h-48.22v-8l3.45-3.44h44.77V168.97h-261.11l-4.77 4.78h-15.45v17.89h-23.55v404.67h15.33z"
+                    class="st0"/>
+
+                <path id="Foyer" data-name="Foyer" data-link=""  data-width="20.9 ft" data-length="27 ft" 
+                    d="M1826.64 907.03v129.56l3.11 2.11v33.89h260.78v111.33h13l4.17-4.17h35.17l3.08 3.08h133.92s5.46-3.67 5.46-5.46v-100.79h-93.46v-37.33s18.67 1.67 17 0 0-46.67 0-46.67h-17.33v-55h17V893.3l-94.28-.5-283.83-1.11-.17 14.94-3.61.39Z"
+                    class="st0"/>
+
+            </svg>
+            <!-- ===== END GYM FLOOR 2 HOTSPOTS ===== -->
+
+            <div id="scoTip" class="sco-tip" role="status" aria-live="polite"></div>
+
+            <!-- <button class="touch-button button1" onclick="window.location.href='360/Kitchen.html'">
+                Kitchen
+            </button>
+            <button class="touch-button button2" onclick="window.location.href='360/Lobby.html'">
+                Lobby
+            </button>
+            <button class="touch-button button4" onclick="window.location.href='360/Room_1.html'">
+                Room 1
+            </button>
+            <button class="touch-button button3" onclick="window.location.href='360/Room_2.html'">
+                Room 2
+            </button>
+            <button class="touch-button button5" onclick="window.location.href='360/Room_3.html'">
+                Room 3
+            </button>
+            <button class="touch-button button6" onclick="window.location.href='360/Dinning.html'">
+                Dinning Table
+            </button>
+        </div> -->
+        </div>
+
+        <!-- Bottom Center Panel -->
+        <!-- <nav class="jumpbar" role="navigation" aria-label="Quick jumps">
+            <div class="jumpbar-inner">
+                <button class="jumpchip" onclick="location.href='Office_Lobby.html'">Office Lobby</button>
+                <button class="jumpchip" onclick="location.href='Office1.html'">Office 1</button>
+                <button class="jumpchip" onclick="location.href='Office2.html'">Office 2</button>
+                <button class="jumpchip" onclick="location.href='Office3.html'">Office 3</button>
+                <button class="jumpchip" onclick="location.href='Office4.html'">Office 4</button>
+      <button class="jumpchip" onclick="location.href='Office_Conference.html'">Office Cofference</button>
+                <button class="jumpchip is-accent" id="openEnquiry">📞 Request Call Back</button>
+
+
+                <!-- add more as you like -->
+            <!-- </div>
+        </nav>  -->
+        <!-- <div id="videoOverlay" class="video-overlay">
+        <video id="walkthroughVideo" controls preload="none">
+            <source src="./../../Video/Lutyen Lobby.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+    </div> -->
+        <!-- Request Callback Modal -->
+        <div class="callback-enquiry">
+            <div class="callback-overlay" id="enquiryOverlay" aria-hidden="true">
+                <div class="callback-modal modal" role="dialog" aria-labelledby="callbackTitle">
+                    <div class="callback-modal-header">
+                        <div id="callbackTitle" class="callback-title">Request Callback</div>
+                        <button class="callback-close" id="closeBtn" aria-label="Close">✕</button>
+                    </div>
+
+                    <div class="callback-modal-body">
+                        <form id="enquiryForm" class="callback-form" novalidate>
+                            <div class="callback-two">
+                                <input class="callback-input" name="firstName" placeholder="First Name" required />
+                                <input class="callback-input" name="lastName" placeholder="Last Name" required />
+                            </div>
+
+                            <div class="callback-phone">
+                                <select name="dialCode" aria-label="Country Code">
+                                    <option>+91</option>
+                                    <option>+971</option>
+                                    <option>+44</option>
+                                    <option>+1</option>
+                                </select>
+                                <input type="tel" name="phone" placeholder="Phone Number" required />
+                            </div>
+
+                            <input class="callback-input" type="email" name="email" placeholder="Email Address"
+                                required />
+
+                            <label class="callback-agree">
+                                <input type="checkbox" id="agree" />
+                                <span>I agree to the <a href="#">Privacy Policy</a> and
+                                    <a href="#">Terms & Conditions</a>.</span>
+                            </label>
+
+                            <button class="submit" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const upLobby = document.getElementById("upLobby");
+                if (upLobby) {
+                    upLobby.addEventListener("click", () => {
+                        window.location.href = "Lobby_Top_Floor_2.html";  // ← your desired page here
+                    });
+                }
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const closeCard = document.getElementById('closeCard');
+                if (!closeCard) return;
+
+                closeCard.addEventListener('click', () => {
+                    const tower = sessionStorage.getItem('lastTower') || 'A';
+                    const to = tower === 'B'
+                        ? './../../SubPages/Tower_B.html'
+                        : './../../SubPages/Tower_A.html';
+
+                    window.location.href = to;
+                });
+            });
+        </script>
+
+
+
+        <!-- ===== SVG HOTSPOT HOVER + CLICK ===== -->
+        
+  <script src="./../../JS/HoverEffect.js"></script>
+
+         <script src="floor-dropdown.js"></script>
+        <script src="./../../JS/enquiry_data.js"></script>
+        <script src="./../../JS/TM_Requestbtn.js"></script>
+        <script src="./../../JS/VideoPlayer.js"></script>
+        <script src="./../../JS/Disbale-Inspect.js"></script>
+        <script src="./../../JS/Image_Loader.js"></script>
+
+</body>
+
+</html>

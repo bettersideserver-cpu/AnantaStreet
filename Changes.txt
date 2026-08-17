@@ -1,0 +1,11 @@
+
+<link rel="stylesheet" href="./../../JS/CSS/HoverEffect.css">
+
+
+
+  data-width="12.5 ft" data-length="18.2 ft" data-carpet="227.5 sq.ft" data-super="310 sq.ft"
+
+
+
+
+  <script src="./../../JS/HoverEffect.js"></script>
