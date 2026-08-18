@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="floor-dropdown.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ananta Street</title>
+    <link rel="stylesheet" href="./../../JS/CSS/RequestStyle.css">
+    <link rel="stylesheet" href="./../../JS/CSS/HoverEffect.css">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .lobby-top {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: rgba(211, 201, 202, 1); */
+            background-color: #545454;
+        }
+
+        .content-wrapper {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .content-wrapper img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            object-position: center;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* ===== SCO hotspot overlay =====
+   Stretches exactly with the image because the image uses object-fit:fill
+   and the SVG uses preserveAspectRatio="none". Do not change one without
+   the other, or the shapes will drift off the building. */
+        .sco-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+            /* empty space stays click-through */
+        }
+
+        .sco-overlay .st0 {
+            fill: rgba(196, 154, 108, .16);
+            /* bronze tint, visible at rest */
+            stroke: rgba(255, 255, 255, .45);
+            /* soft outline at rest */
+            stroke-miterlimit: 10;
+            stroke-width: 6px;
+            opacity: 1;
+            /* no global fade - fill does the work */
+            cursor: pointer;
+            pointer-events: auto;
+            /* the shapes themselves are clickable */
+            transition: fill .25s ease, stroke .25s ease;
+        }
+
+        .sco-overlay .st0:hover,
+        .sco-overlay .st0.is-active {
+            /* .is-active = tapped on touch */
+            fill: rgba(196, 154, 108, .45);
+            /* strong bronze on hover */
+            stroke: #fff;
+            /* crisp white outline */
+        }
+
+        /* Hover name label */
+        .sco-tip {
+            position: fixed;
+            z-index: 9995;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, .78);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            font: 600 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, -140%);
+            transition: opacity .18s ease;
+        }
+
+        .sco-tip.is-visible {
+            opacity: 1;
+        }
+
+        .touch-button {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            padding: 12px 12px;
+            font-size: 16px;
+            background: rgba(196, 196, 196, 0.8);
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .button1 {
+            top: 40%;
+            left: 34%;
+        }
+
+        .button2 {
+            top: 46%;
+            left: 62%;
+        }
+
+        .button3 {
+            top: 35%;
+            left: 57%;
+        }
+
+        .button4 {
+            top: 25%;
+            left: 37%;
+        }
+
+        .button5 {
+            top: 70%;
+            left: 57%;
+        }
+
+        .button6 {
+            top: 50%;
+            left: 35%;
+        }
+
+
+        .touch-button:hover {
+            background-color: #c0392b;
+        }
+
+        .close-btn2 {
+            position: fixed;
+            top: 50px;
+            left: 90px;
+            width: 40px;
+            height: 40px;
+            background-color: #2c2c2c;
+            border-radius: 12px;
+            border: none;
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+            z-index: 9999;
+        }
+
+        .close-btn2:hover {
+            background-color: #444;
+        }
+
+        @media (max-width: 600px) {
+            .close-btn2 {
+                top: 50px;
+                left: 30px;
+
+            }
+
+        }
+
+        /* ===== Bottom Center Jumpbar ===== */
+        :root {
+            --chip-bg: #2b2b2b;
+            /* pill bg */
+            --chip-fg: #fff;
+            /* pill text */
+            --chip-fg-dim: #cfcfcf;
+            --chip-bg-hover: #3a3a3a;
+            /* hover bg */
+            --chip-ring: rgba(255, 255, 255, .12);
+            --bar-bg: rgba(0, 0, 0, .35);
+            /* translucent bar behind chips */
+            --bar-blur: 10px;
+            /* subtle blur on supported browsers */
+            --gap: 10px;
+            --radius: 10px;
+            --chip-pad-y: 8px;
+            --chip-pad-x: 14px;
+            --chip-fs: 12px;
+        }
+
+        /* fixed & centered relative to the viewport */
+        .jumpbar {
+            position: fixed;
+            left: 50%;
+            bottom: max(16px, env(safe-area-inset-bottom, 16px));
+            transform: translateX(-50%);
+            z-index: 9990;
+            width: fit-content;
+            max-width: 96vw;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+
+            /* NEW 👇 */
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            scrollbar-width: none;
+            /* hide scrollbar Firefox */
+        }
+
+        .jumpbar::-webkit-scrollbar {
+            display: none;
+            /* hide scrollbar Chrome/Safari */
+        }
+
+        .jumpbar-inner {
+            display: inline-flex;
+            /* inline-flex keeps them in one line */
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        /* Pills */
+        .jumpchip {
+            appearance: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: #2b2b2b;
+            color: #fff;
+            font: 600 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            padding: 8px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s ease, transform 0.08s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .jumpchip:hover {
+            background: #3a3a3a;
+        }
+
+        .jumpchip:active {
+            transform: translateY(1px);
+        }
+
+        .jumpchip.is-accent {
+            background: #c49a6c;
+            /* bronze */
+            border-color: rgba(196, 154, 108, 0.5);
+            color: #1b1b1b;
+        }
+
+        .jumpchip.is-accent:hover {
+            background: #d8a86e;
+            /* polished amber hover */
+        }
+
+
+        /* optional: bronze accent variant to match your theme */
+        .jumpchip.is-accent {
+            background: #c49a6c;
+            /* bronze */
+            border-color: rgba(196, 154, 108, .5);
+            color: #1b1b1b;
+        }
+
+        .jumpchip.is-accent:hover {
+            background: #d8a86e;
+            /* polished amber on hover */
+        }
+
+        /* quick, soft placeholder look */
+        .blur-up {
+            filter: blur(10px);
+            transform: scale(1.02);
+            transition: filter .45s ease, transform .45s ease, opacity .35s ease;
+        }
+
+        /* once the full image is in */
+        .blur-up.is-loaded {
+            filter: blur(0);
+            transform: scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="close-btn2" id="closeCard">←</button>
+    <div class="lobby-top">
+        <div class="content-wrapper">
+            <!-- <img src="./../../images/Apparments/3BHK/Lobby_Top.jpg" alt="Penthouse Lobby Image" /> -->
+            <img id="mainImage" src="./../../svg-images/Resturant_Ground.jpg"
+                data-full="./../../svg-images/Resturant_Ground.jpg" alt="Home" fetchpriority="high" decoding="async"
+                width="3840" height="2160" class="blur-up" />
+
+            <!-- ===== SCO HOTSPOTS =====
+                 viewBox matches the supplied SVG (3840 x 2160).
+                 preserveAspectRatio="none" makes it stretch with object-fit:fill. -->
+            <svg class="sco-overlay" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3840 2160"
+                preserveAspectRatio="none" aria-label="SCO hotspots">
+
+                <path id="S.C.O-23" data-name="S.C.O-23" data-link="../../360s/index.html?room=18" data-width="22.45 ft"
+                    data-length="53 ft" data-carpet="1186.44 sq.ft" data-super="1542.37 sq.ft"
+                    d="M940.22 1259.89s35.11-.22 35.11 0 4.67 4.22 4.67 4.22l174-4.32 5.33-3.9 4.44 4.11h36.44l.89-4.11h4.44l4-4.22h33.78l-22.56-718.56h-36l-.89-3.11h-6.22l-.89-4h-62.67l-.89 5.78h-7.56l-1.33-2.22L946.53 534l-4.44 5.78-6.22.89v11.11l-17.33.44 21.67 707.67Z"
+                    class="st0" />
+
+                <path id="S.C.O-22" data-name="S.C.O-22" data-link="../../360s/index.html?room=19" data-width="22.15 ft"
+                    data-length="53 ft" data-carpet="1167.60 sq.ft" data-super="1517.88 sq.ft"
+                    d="m1260.28 1250.39 50.66-1.5 5 5.67 148.5-4.34 2.34-2.83h5.33l1.83 2.67 36.5-.67 1.67-2 4.67-.83 1.83-3 51-1.17-21-701.28h-12.17l-.83-17.83h-17l-7.5-3.67-222.67 4.33.17 3.17-5.5 3.83-46.17.67z"
+                    class="st0" />
+
+                <path id="S.C.O-21" data-name="S.C.O-21" data-link="../../360s/index.html?room=20" data-width="22.15 ft"
+                    data-length="53 ft" data-carpet="1167.60 sq.ft" data-super="1517.88 sq.ft"
+                    d="m1564.78 540.78 12.44-1.33v-18.22h32l4-3.11 260-4.67 23.11 719.33-50.44 2-4.67 3.11h-2.89l-1.78 2.67-195.11 5.78s-5.33-5.33-6-5.33-49.11 1.56-49.11 1.56l-21.56-701.78Z"
+                    class="st0" />
+
+                <path id="S.C.O-20" data-name="S.C.O-20" data-link="../../360s/index.html?room=18" data-width="22.15 ft"
+                    data-length="53 ft" data-carpet="1167.60 sq.ft" data-super="1517.88 sq.ft"
+                    d="m1912.78 1232 49.89-2 5.44 5.33 149.11-2.77 2.11-2.56h4.56l2.89 2.22 36.22-.89 1.56-3.44h5.22l.78-3.78L2222 1223l-21.67-719.89-309.33 9.67z"
+                    class="st0" />
+
+                <path id="S.C.O-19" data-name="S.C.O-19" data-link="../../360s/index.html?room=19" data-width="22.15 ft"
+                    data-length="53 ft" data-carpet="1167.60 sq.ft" data-super="1517.88 sq.ft"
+                    d="m2238.61 1223 52-1.22 3.22 4.78 158.89-4 1.78-3 5.44-.44 1.78 2.22h36.78s1-1.89 1.56-2.22 5.11 0 5.11 0l3.33-4 40.56-1-22-719.17-46.33 1.22-6.44-5.67-219 3.78-.89 3.44-8.67 5.39h-14.67v16.39l-5.67 2.33-8.78.22 22 700.94Z"
+                    class="st0" />
+
+                <path id="S.C.O-18" data-name="S.C.O-18" data-link="../../360s/index.html?room=20" data-width="22.15 ft"
+                    data-length="53 ft" data-carpet="1185.29 sq.ft" data-super="1540.877 sq.ft"
+                    d="m2565.56 1214.06 33.88-1.23 5.34 5 154.33-3.89 2.56-2.66h4.77l1.56 4.22 56.67-.94 1.11-4.5 3.22-1.23h2.44l1.23-2.55 36.55-1-1.78-42.45 4-2.11-24.77-683.05-260.45 7.11-.89 5.72h-4l-2.66 3.61-36-.44z"
+                    class="st0" />
+
+            </svg>
+            <!-- ===== END SCO HOTSPOTS ===== -->
+            <!-- <button class="touch-button button1" onclick="window.location.href='360/Kitchen.html'">
+                Kitchen
+            </button>
+            <button class="touch-button button2" onclick="window.location.href='360/Lobby.html'">
+                Lobby
+            </button>
+            <button class="touch-button button4" onclick="window.location.href='360/Room_1.html'">
+                Room 1
+            </button>
+            <button class="touch-button button3" onclick="window.location.href='360/Room_2.html'">
+                Room 2
+            </button>
+            <button class="touch-button button5" onclick="window.location.href='360/Room_3.html'">
+                Room 3
+            </button>
+            <button class="touch-button button6" onclick="window.location.href='360/Dinning.html'">
+                Dinning Table
+            </button>
+        </div> -->
+        </div><!-- /.content-wrapper -->
+    </div><!-- /.lobby-top -->
+
+    <!-- Bottom Center Panel -->
+    <!-- <nav class="jumpbar" role="navigation" aria-label="Quick jumps">
+            <div class="jumpbar-inner">
+                <button class="jumpchip" onclick="location.href='Office_Lobby.html'">Office Lobby</button>
+                <button class="jumpchip" onclick="location.href='Office1.html'">Office 1</button>
+                <button class="jumpchip" onclick="location.href='Office2.html'">Office 2</button>
+                <button class="jumpchip" onclick="location.href='Office3.html'">Office 3</button>
+                <button class="jumpchip" onclick="location.href='Office4.html'">Office 4</button>
+      <button class="jumpchip" onclick="location.href='Office_Conference.html'">Office Cofference</button>
+                <button class="jumpchip is-accent" id="openEnquiry">📞 Request Call Back</button>
+                add more as you like
+            </div>
+        </nav> -->
+    <!-- <div id="videoOverlay" class="video-overlay">
+        <video id="walkthroughVideo" controls preload="none">
+            <source src="./../../Video/Lutyen Lobby.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+    </div> -->
+    <!-- Request Callback Modal -->
+    <div class="callback-enquiry">
+        <div class="callback-overlay" id="enquiryOverlay" aria-hidden="true">
+            <div class="callback-modal modal" role="dialog" aria-labelledby="callbackTitle">
+                <div class="callback-modal-header">
+                    <div id="callbackTitle" class="callback-title">Request Callback</div>
+                    <button class="callback-close" id="closeBtn" aria-label="Close">✕</button>
+                </div>
+
+                <div class="callback-modal-body">
+                    <form id="enquiryForm" class="callback-form" novalidate>
+                        <div class="callback-two">
+                            <input class="callback-input" name="firstName" placeholder="First Name" required />
+                            <input class="callback-input" name="lastName" placeholder="Last Name" required />
+                        </div>
+
+                        <div class="callback-phone">
+                            <select name="dialCode" aria-label="Country Code">
+                                <option>+91</option>
+                                <option>+971</option>
+                                <option>+44</option>
+                                <option>+1</option>
+                            </select>
+                            <input type="tel" name="phone" placeholder="Phone Number" required />
+                        </div>
+
+                        <input class="callback-input" type="email" name="email" placeholder="Email Address" required />
+
+                        <label class="callback-agree">
+                            <input type="checkbox" id="agree" />
+                            <span>I agree to the <a href="#">Privacy Policy</a> and
+                                <a href="#">Terms & Conditions</a>.</span>
+                        </label>
+
+                        <button class="submit" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const upLobby = document.getElementById("upLobby");
+            if (upLobby) {
+                upLobby.addEventListener("click", () => {
+                    window.location.href = "Lobby_Top_Floor_2.html";  // ← your desired page here
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const closeCard = document.getElementById('closeCard');
+            if (!closeCard) return;
+
+            closeCard.addEventListener('click', () => {
+                const tower = sessionStorage.getItem('lastTower') || 'A';
+                const to = tower === 'B'
+                    ? './../../SubPages/Tower_B.html'
+                    : './../../SubPages/Tower_A.html';
+
+                window.location.href = to;
+            });
+        });
+    </script>
+
+
+    <!-- ===== SCO hotspot hover + click ===== -->
+    <div id="scoTip" class="sco-tip" role="status" aria-live="polite"></div>
+  
+
+    <script src="floor-dropdown.js"></script>
+    <script src="./../../JS/HoverEffect.js"></script>
+    <script src="./../../JS/enquiry_data.js"></script>
+    <script src="./../../JS/TM_Requestbtn.js"></script>
+    <script src="./../../JS/VideoPlayer.js"></script>
+    <script src="./../../JS/Disbale-Inspect.js"></script>
+    <script src="./../../JS/Image_Loader.js"></script>
+
+</body>
+
+</html>

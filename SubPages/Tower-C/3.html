@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <link rel="stylesheet" href="floor-dropdown.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ananta Street</title>
+    <link rel="stylesheet" href="./../../JS/CSS/RequestStyle.css">
+<link rel="stylesheet" href="./../../JS/CSS/HoverEffect.css">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .lobby-top {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: rgba(211, 201, 202, 1); */
+            background-color: #545454;
+        }
+
+.content-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.content-wrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    object-position: center;
+    user-select: none;
+    pointer-events: none;
+}
+        .touch-button {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            padding: 12px 12px;
+            font-size: 16px;
+            background: rgba(196, 196, 196, 0.8);
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .button1 {
+            top: 40%;
+            left: 34%;
+        }
+
+        .button2 {
+            top: 46%;
+            left: 62%;
+        }
+
+        .button3 {
+            top: 35%;
+            left: 57%;
+        }
+
+        .button4 {
+            top: 25%;
+            left: 37%;
+        }
+
+        .button5 {
+            top: 70%;
+            left: 57%;
+        }
+
+        .button6 {
+            top: 50%;
+            left: 35%;
+        }
+
+
+        .touch-button:hover {
+            background-color: #c0392b;
+        }
+
+        .close-btn2 {
+            position: fixed;
+            top: 50px;
+            left: 90px;
+            width: 40px;
+            height: 40px;
+            background-color: #2c2c2c;
+            border-radius: 12px;
+            border: none;
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+            z-index: 9999;
+        }
+
+        .close-btn2:hover {
+            background-color: #444;
+        }
+
+        @media (max-width: 600px) {
+            .close-btn2 {
+                top: 50px;
+                left: 30px;
+
+            }
+
+        }
+
+        /* ===== Bottom Center Jumpbar ===== */
+        :root {
+            --chip-bg: #2b2b2b;
+            /* pill bg */
+            --chip-fg: #fff;
+            /* pill text */
+            --chip-fg-dim: #cfcfcf;
+            --chip-bg-hover: #3a3a3a;
+            /* hover bg */
+            --chip-ring: rgba(255, 255, 255, .12);
+            --bar-bg: rgba(0, 0, 0, .35);
+            /* translucent bar behind chips */
+            --bar-blur: 10px;
+            /* subtle blur on supported browsers */
+            --gap: 10px;
+            --radius: 10px;
+            --chip-pad-y: 8px;
+            --chip-pad-x: 14px;
+            --chip-fs: 12px;
+        }
+
+        /* fixed & centered relative to the viewport */
+        .jumpbar {
+            position: fixed;
+            left: 50%;
+            bottom: max(16px, env(safe-area-inset-bottom, 16px));
+            transform: translateX(-50%);
+            z-index: 9990;
+            width: fit-content;
+            max-width: 96vw;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+
+            /* NEW 👇 */
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            scrollbar-width: none;
+            /* hide scrollbar Firefox */
+        }
+
+        .jumpbar::-webkit-scrollbar {
+            display: none;
+            /* hide scrollbar Chrome/Safari */
+        }
+
+        .jumpbar-inner {
+            display: inline-flex;
+            /* inline-flex keeps them in one line */
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        /* Pills */
+        .jumpchip {
+            appearance: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: #2b2b2b;
+            color: #fff;
+            font: 600 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            padding: 8px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s ease, transform 0.08s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .jumpchip:hover {
+            background: #3a3a3a;
+        }
+
+        .jumpchip:active {
+            transform: translateY(1px);
+        }
+
+        .jumpchip.is-accent {
+            background: #c49a6c;
+            /* bronze */
+            border-color: rgba(196, 154, 108, 0.5);
+            color: #1b1b1b;
+        }
+
+        .jumpchip.is-accent:hover {
+            background: #d8a86e;
+            /* polished amber hover */
+        }
+
+
+        /* optional: bronze accent variant to match your theme */
+        .jumpchip.is-accent {
+            background: #c49a6c;
+            /* bronze */
+            border-color: rgba(196, 154, 108, .5);
+            color: #1b1b1b;
+        }
+
+        .jumpchip.is-accent:hover {
+            background: #d8a86e;
+            /* polished amber on hover */
+        }
+
+        /* quick, soft placeholder look */
+        .blur-up {
+            filter: blur(10px);
+            transform: scale(1.02);
+            transition: filter .45s ease, transform .45s ease, opacity .35s ease;
+        }
+
+        /* once the full image is in */
+        .blur-up.is-loaded {
+            filter: blur(0);
+            transform: scale(1);
+            opacity: 1;
+        }
+    
+        /* ===== SVG HOTSPOT OVERLAY ===== */
+        .sco-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .sco-overlay .st0 {
+            fill: rgba(196, 154, 108, .16);
+            stroke: rgba(255, 255, 255, .45);
+            stroke-miterlimit: 10;
+            stroke-width: 6px;
+            opacity: 1;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: fill .25s ease, stroke .25s ease;
+        }
+
+        .sco-overlay .st0:hover,
+        .sco-overlay .st0.is-active {
+            fill: rgba(196, 154, 108, .45);
+            stroke: #fff;
+        }
+
+        .sco-tip {
+            position: fixed;
+            z-index: 9995;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, .78);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            font: 600 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, -140%);
+            transition: opacity .18s ease;
+        }
+
+        .sco-tip.is-visible {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <button class="close-btn2" id="closeCard">←</button>
+    <div class="lobby-top">
+        <div class="content-wrapper">
+            <!-- <img src="./../../images/Apparments/3BHK/Lobby_Top.jpg" alt="Penthouse Lobby Image" /> -->
+            <img id="mainImage" src="./../../svg-images/Building4_Floor_3.jpg"
+                data-full="./../../svg-images/Building4_Floor_3.jpg" alt="Home" fetchpriority="high"
+                decoding="async" width="3840" height="5830" class="blur-up" />
+
+            <!-- ===== OFFICE HOTSPOTS ===== -->
+            <svg class="sco-overlay"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 3840 2160"
+                 preserveAspectRatio="none"
+                 aria-label="Office hotspots">
+
+                <!-- <polygon id="Office_03" data-name="Office 03" data-link="Office/Office_03.html" class="st0"
+                    points="945 1922.11 945 1934.56 936.33 1934.56 936.33 2026.56 949.22 2026.56 949.22 2045 969.33 2045 969.33 2052.44 1011.78 2052.44 1011.78 2044.78 1030.33 2044.78 1030.33 2051.78 1073 2051.78 1073 2045.44 1091.44 2045.44 1091.44 2051.67 1114.78 2051.67 1114.78 2028.89 1137.56 2028.89 1137.56 2044.67 1185.22 2044.67 1185.22 2032.11 1187.39 2029.94 1187.39 1946.19 1155.67 1946.19 1155.67 1923.25 945 1922.11"/>
+
+                <polygon id="Office_04" data-name="Office 04" data-link="Office/Office_04.html" class="st0"
+                    points="945.06 1806.61 945.06 1817.94 937.56 1817.94 937.56 1896.61 945.06 1896.61 945.06 1910.11 1185.72 1910.11 1185.72 1827.94 1155.72 1827.94 1155.72 1805.78 945.06 1806.61"/>
+
+                <polygon id="Office_05" data-name="Office 05" data-link="Office/Office_05.html" class="st0"
+                    points="948.89 1691.94 948.89 1705.78 937.56 1705.78 937.56 1750.28 945.72 1750.28 945.72 1795.28 1156.72 1795.28 1156.72 1781.61 1187.72 1781.61 1187.72 1691.94 1138.22 1691.94 1138.22 1705.61 1114.22 1705.61 1114.22 1692.61 948.89 1691.94"/>
+
+                <path id="Office_06" data-name="Office 06" data-link="Office/Office_06.html" class="st0"
+                    d="M937.56,1668.94h6.83v13.5h240v-11.17l2.83-2.83v-134.17h-32.5v-14.17h-209.17v12.67h-8v43.67h7.17v46.17h-7.17s.17,46.33,0,46.33Z"/>
+
+                <polygon id="Office_07" data-name="Office 07" data-link="Office/Office_07.html" class="st0"
+                    points="943.78 1379.61 943.78 1398.78 935.61 1398.78 935.61 1444.78 943.78 1444.78 943.78 1465.78 935.61 1465.78 935.61 1495.11 947.94 1495.11 947.94 1509.11 1114.06 1509.11 1114.06 1498.94 1138.39 1498.94 1138.39 1509.94 1155.89 1509.94 1155.89 1489.61 1188.22 1489.61 1188.22 1379.61 943.78 1379.61"/>
+
+                <path id="Office_08" data-name="Office 08" data-link="Office/Office_08.html" class="st0"
+                    d="M945.28,1220.83v18.5h-8.33v40.67h7.5v31.67h-7.5v45.67h8.33v12.5h240.17v-11.17l2.64-2.64v-121.53h-32.31v-13.67h-210.5Z"/>
+
+                <polygon id="Conference" data-name="Conference" data-link="Conference/Conference.html" class="st0"
+                    points="945.28 1061.83 945.28 1074.33 943.44 1076.17 943.44 1119.5 945.69 1121.75 945.69 1153.17 942.82 1156.04 942.82 1195.83 949.11 1195.83 949.11 1211.5 1114.11 1211.5 1114.11 1199.67 1138.44 1199.67 1138.44 1210.33 1155.61 1210.33 1155.61 1188.83 1188.08 1188.83 1188.08 1061.83 945.28 1061.83"/>
+
+                <polygon id="Office_09" data-name="Office 09" data-link="Office/Office_09.html" class="st0"
+                    points="1265.83 1897.89 1265.83 2030.56 1283.03 2030.56 1283.03 2051.78 1322.75 2051.78 1322.75 2044.17 1339.25 2044.17 1339.25 2052.78 1383.58 2052.78 1383.58 2044.33 1400.31 2044.33 1400.31 2052.33 1443.53 2052.33 1443.53 2045.44 1458.92 2045.44 1458.92 2026.78 1462.31 2026.78 1462.31 2016.56 1469.42 2016.56 1469.42 1978.22 1461.53 1978.22 1461.53 1932.44 1471.31 1932.44 1471.31 1895 1462.08 1895 1462.08 1879.89 1299.42 1879.89 1299.42 1897.33 1265.83 1897.89"/>
+
+                <path id="Office_10" data-name="Office 10" data-link="Office/Office_10.html" class="st0"
+                    d="M1268.14,1706.17v145.67h31.17v18.5h162.5v-20.83h7.5v-37.83h-7.17v-45.17h8.33v-37.5h-8.5v-22.83h-2.83v-13h-175.5v12.33s-16,.17-15.5.67Z"/>
+
+                <path id="Office_11" data-name="Office 11" data-link="Office/Office_11.html" class="st0"
+                    d="M1268.13,1540.83v141.61h202.34v-37.28h-8.5v-45.67h8.5v-37.33h-8v-42.06h-163.17v20.56s-31.35,0-31.18.17Z"/>
+
+                <polygon id="Office_12" data-name="Office 12" data-link="Office/Office_12.html" class="st0"
+                    points="1266.64 1080 1266.64 1199.17 1283.08 1199.17 1283.08 1210.5 1426.19 1210.5 1426.19 1195.39 1430.53 1191.06 1465.08 1191.06 1469.03 1195 1469.03 1210.5 1519.08 1210.5 1519.08 1196.28 1530.19 1196.28 1530.19 1046.5 1521.97 1046.5 1521.97 1033.83 1298.86 1033.83 1298.86 1080 1266.64 1080"/>
+
+                <path id="Office_13" data-name="Office 13" data-link="Office/Office_13.html" class="st0"
+                    d="M1269.31,854.72v44.22h13.78v20.44h-16.44v104.89h255.56v-12.89h8v-86.22h-11.11v-25.56h11.11v-32h-7.78v-12.89s-252.89.22-253.11,0Z"/>
+
+                <path id="Office_20" data-name="Office 20" data-link="Office/Office_20.html" class="st0"
+                    d="M1245.31,422.17s-1.11,222.22,0,222.22h131.33v-10h6.89v-230.44h-5.11v-16.44h-111.56v35.11l-21.56-.44Z"/>
+
+                <polygon id="Office_21" data-name="Office 21" data-link="Office/Office_21.html" class="st0"
+                    points="1397.97 387.5 1397.97 402.5 1392.64 402.5 1392.64 634.5 1400.31 634.5 1400.31 644.39 1532.31 644.39 1532.31 423.17 1514.53 421.83 1514.53 387.5 1397.97 387.5"/>
+
+                <path id="Office_22" data-name="Office 22" data-link="Office/Office_22.html" class="st0"
+                    d="M1558.42,385.83v36.44h-16v222.11h8v2.78h122v-12.44h8.44v-231.11h-4.89v-16.11s-117.89-1.33-117.56-1.67Z"/>
+
+                <path id="Office_23" data-name="Office 23" data-link="Office/Office_23.html" class="st0"
+                    d="M1702.86,385.83l-2.56,2.56h-4.78v14.56h-5.78v231.78h7.33v11.33h132.67v-223.33h-18v-36.89s-108.89.44-108.89,0Z"/>
+
+                <path id="Office_24" data-name="Office 24" data-link="Office/Office_24.html" class="st0"
+                    d="M1838.97,422v221.67h9.17v3.5h113.33v-13h13.33v-230.5h-10.33v-17.83h-108.33v36.33s-16.67-.67-17.17-.17Z"/>
+
+                <path id="Office_25" data-name="Office 25" data-link="Office/Office_25.html" class="st0"
+                    d="M1985.14,421.83v222.44h8.44v2.89h148.22v-12.89h13.33v-231.11h-9.56v-17.33h-143.78v36.44s-15.78-.44-16.67-.44Z"/>
+
+                <polygon id="Conference1" data-name="Conference" data-link="Conference/Conference_1.html" class="st0"
+                    points="1985.14 224.61 1985.14 308.83 2084.81 308.83 2084.81 303.06 2090.14 303.06 2090.14 268.17 2103.92 268.17 2103.92 225.5 1985.14 224.61"/>
+
+                <polygon id="Office_19" data-name="Office 19" data-link="Office/Office_19.html" class="st0"
+                    points="1839.81 269.89 1854.14 269.89 1854.14 307.72 1974.64 307.72 1974.64 257.22 1965.81 257.22 1965.81 232.56 1974.97 232.56 1974.97 64.64 1961.47 64.64 1961.47 53.31 1839.81 53.31 1839.81 269.89"/>
+
+                <polygon id="Office_18" data-name="Office 18" data-link="Office/Office_18.html" class="st0"
+                    points="1690.2 97.13 1690.2 232.24 1695.2 232.24 1695.2 256.13 1689.92 256.13 1689.92 305.85 1702.42 305.85 1702.42 308.13 1811.28 308.13 1811.28 271.08 1829.61 271.08 1829.61 97.13 1690.2 97.13"/>
+
+                <polygon id="Office_17" data-name="Office 17" data-link="Office/Office_17.html" class="st0"
+                    points="1542 54.88 1542 271.53 1557.86 271.53 1557.86 308.49 1667.84 308.49 1670.09 306.24 1680.84 306.24 1680.84 257.33 1675.75 257.33 1675.75 231.94 1681.03 231.94 1681.03 97.13 1678.86 97.13 1678.86 64.99 1673.95 64.99 1673.95 54.88 1664.42 54.88 1659.91 50.37 1563.38 50.37 1558.7 55.05 1542 54.88"/>
+
+                <polygon id="Office_16" data-name="Office 16" data-link="Office/Office_16.html" class="st0"
+                    points="1401.18 54.68 1401.18 65.12 1393.18 65.12 1393.18 232.45 1398.73 232.45 1398.73 255.34 1393.18 255.34 1393.18 305.79 1403.18 305.79 1405.86 308.47 1516.07 308.47 1516.07 270.45 1532.07 270.45 1532.07 54.68 1522.07 54.68 1517.36 49.97 1419.4 49.97 1414.71 54.66 1401.18 54.68"/>
+
+                <path id="Office_15" data-name="Office 15" data-link="Office/Office_15.html" class="st0"
+                    d="M1244.95,54.9v216.67h16.44v36.93h108.44l2.91-2.91h11.98v-48.69h-6.22v-25.56h6.22V64.9h-7.78v-10h-14.89l-3.33-3.33h-86.67l-3.67,3.67s-23.11-.67-23.44-.33Z"/>
+
+                <path id="Office_14" data-name="Office 14" data-link="Office/Office_14.html" class="st0"
+                    d="M1114.51,54.57v10.67h-15.56v166.67h10v24.89h-10v49.78h12l1.52,1.52h106.7v-36.63h15.78V54.57h-22.22l-4.3-4.3h-82.59l-4.26,4.26s-7.74.04-7.07.04Z"/>
+
+            </svg> -->
+            <!-- ===== END OFFICE HOTSPOTS ===== -->
+
+            <div id="scoTip" class="sco-tip" role="status" aria-live="polite"></div>
+
+            <!-- <button class="touch-button button1" onclick="window.location.href='360/Kitchen.html'">
+                Kitchen
+            </button>
+            <button class="touch-button button2" onclick="window.location.href='360/Lobby.html'">
+                Lobby
+            </button>
+            <button class="touch-button button4" onclick="window.location.href='360/Room_1.html'">
+                Room 1
+            </button>
+            <button class="touch-button button3" onclick="window.location.href='360/Room_2.html'">
+                Room 2
+            </button>
+            <button class="touch-button button5" onclick="window.location.href='360/Room_3.html'">
+                Room 3
+            </button>
+            <button class="touch-button button6" onclick="window.location.href='360/Dinning.html'">
+                Dinning Table
+            </button>
+        </div> -->
+        </div>
+
+        <!-- Bottom Center Panel -->
+        <!-- <nav class="jumpbar" role="navigation" aria-label="Quick jumps">
+            <div class="jumpbar-inner">
+                <button class="jumpchip" onclick="location.href='Office_Lobby.html'">Office Lobby</button>
+                <button class="jumpchip" onclick="location.href='Office1.html'">Office 1</button>
+                <button class="jumpchip" onclick="location.href='Office2.html'">Office 2</button>
+                <button class="jumpchip" onclick="location.href='Office3.html'">Office 3</button>
+                <button class="jumpchip" onclick="location.href='Office4.html'">Office 4</button>
+      <button class="jumpchip" onclick="location.href='Office_Conference.html'">Office Cofference</button>
+                <button class="jumpchip is-accent" id="openEnquiry">📞 Request Call Back</button>
+
+
+                <!-- add more as you like -->
+            <!-- </div>
+        </nav>  -->
+        <!-- <div id="videoOverlay" class="video-overlay">
+        <video id="walkthroughVideo" controls preload="none">
+            <source src="./../../Video/Lutyen Lobby.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+    </div> -->
+        <!-- Request Callback Modal -->
+        <div class="callback-enquiry">
+            <div class="callback-overlay" id="enquiryOverlay" aria-hidden="true">
+                <div class="callback-modal modal" role="dialog" aria-labelledby="callbackTitle">
+                    <div class="callback-modal-header">
+                        <div id="callbackTitle" class="callback-title">Request Callback</div>
+                        <button class="callback-close" id="closeBtn" aria-label="Close">✕</button>
+                    </div>
+
+                    <div class="callback-modal-body">
+                        <form id="enquiryForm" class="callback-form" novalidate>
+                            <div class="callback-two">
+                                <input class="callback-input" name="firstName" placeholder="First Name" required />
+                                <input class="callback-input" name="lastName" placeholder="Last Name" required />
+                            </div>
+
+                            <div class="callback-phone">
+                                <select name="dialCode" aria-label="Country Code">
+                                    <option>+91</option>
+                                    <option>+971</option>
+                                    <option>+44</option>
+                                    <option>+1</option>
+                                </select>
+                                <input type="tel" name="phone" placeholder="Phone Number" required />
+                            </div>
+
+                            <input class="callback-input" type="email" name="email" placeholder="Email Address"
+                                required />
+
+                            <label class="callback-agree">
+                                <input type="checkbox" id="agree" />
+                                <span>I agree to the <a href="#">Privacy Policy</a> and
+                                    <a href="#">Terms & Conditions</a>.</span>
+                            </label>
+
+                            <button class="submit" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const upLobby = document.getElementById("upLobby");
+                if (upLobby) {
+                    upLobby.addEventListener("click", () => {
+                        window.location.href = "Lobby_Top_Floor_2.html";  // ← your desired page here
+                    });
+                }
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const closeCard = document.getElementById('closeCard');
+                if (!closeCard) return;
+
+                closeCard.addEventListener('click', () => {
+                    const tower = sessionStorage.getItem('lastTower') || 'A';
+                    const to = tower === 'B'
+                        ? './../../SubPages/Tower_B.html'
+                        : './../../SubPages/Tower_A.html';
+
+                    window.location.href = to;
+                });
+            });
+        </script>
+
+
+
+        <!-- ===== OFFICE HOTSPOT HOVER + CLICK ===== -->
+    
+
+         <script src="floor-dropdown.js"></script>
+  <script src="./../../JS/HoverEffect.js"></script>
+        <script src="./../../JS/enquiry_data.js"></script>
+        <script src="./../../JS/TM_Requestbtn.js"></script>
+        <script src="./../../JS/VideoPlayer.js"></script>
+        <script src="./../../JS/Disbale-Inspect.js"></script>
+        <script src="./../../JS/Image_Loader.js"></script>
+
+</body>
+
+</html>
