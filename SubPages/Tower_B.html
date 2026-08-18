@@ -17,13 +17,319 @@
             }
         }
     </style>
+    <style>
+    /* ---------- EYE BUTTON (sits next to your ← back button) ---------- */
+    .eye-fab {
+        position: fixed;
+        top: 50px;
+        /* same row as .close-btn */
+        left: 112px;
+        /* 60px (close-btn left) + 40px (its width) + 12px gap */
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #c8a96a, #b08a44);
+        color: #ffffff;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        transition: transform .18s ease, box-shadow .25s ease, background .25s ease;
+        z-index: 9999;
+        /* same layer as .close-btn */
+    }
+
+    .eye-fab:hover {
+        background: linear-gradient(135deg, #d8b877, #bd964b);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    .eye-fab:active {
+        transform: translateY(1px);
+    }
+
+    .eye-fab svg {
+        width: 22px;
+        height: 22px;
+        display: block;
+        pointer-events: none;
+    }
+
+    /* ---------- the little red notification dot (pulses) ---------- */
+    .eye-fab__badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ff3b30;
+        border: 2px solid #1b1b1b;
+        box-shadow: 0 0 0 0 rgba(255, 59, 48, .7);
+        animation: eyePulse 1.8s infinite;
+    }
+
+    @keyframes eyePulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(255, 59, 48, .7);
+        }
+
+        70% {
+            box-shadow: 0 0 0 10px rgba(255, 59, 48, 0);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+        }
+    }
+
+    /* once the user has watched it, dot disappears */
+    .eye-fab.is-seen .eye-fab__badge {
+        display: none;
+    }
+
+    /* ---------- hint label next to the eye ("Watch Walkthrough") ---------- */
+    .eye-tip {
+        position: fixed;
+        top: 58px;
+        /* vertically centred against the 40px button */
+        left: 160px;
+        /* just right of the eye button */
+        padding: 7px 12px;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.78);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        color: #fff;
+        font: 600 12px/1 "Raleway", system-ui, sans-serif;
+        letter-spacing: .4px;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateX(-6px);
+        transition: opacity .3s ease, transform .3s ease;
+        z-index: 9998;
+    }
+
+    .eye-tip::before {
+        /* little arrow pointing at the button */
+        content: "";
+        position: absolute;
+        left: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-right: 5px solid rgba(0, 0, 0, 0.78);
+    }
+
+    .eye-tip.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* ---------- VIDEO TAB (overlay) ---------- */
+    .vtab-overlay {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.82);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity .35s ease, visibility .35s ease;
+        z-index: 100001;
+        /* above every other layer you have */
+    }
+
+    .vtab-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* the framed panel */
+    .vtab-panel {
+        position: relative;
+        width: min(1100px, 92vw);
+        max-height: 88vh;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #0c0c0d;
+        border: 1px solid rgba(200, 169, 106, 0.45);
+        /* gold hairline */
+        box-shadow:
+            0 30px 80px rgba(0, 0, 0, .65),
+            inset 0 1px 0 rgba(255, 255, 255, .06);
+        transform: translateY(14px) scale(.97);
+        transition: transform .35s cubic-bezier(.2, .8, .25, 1);
+    }
+
+    .vtab-overlay.is-open .vtab-panel {
+        transform: translateY(0) scale(1);
+    }
+
+    /* header strip with the title + close */
+    .vtab-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px 12px 18px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, 0));
+        border-bottom: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .vtab-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font: 600 15px/1.2 "Raleway", system-ui, sans-serif;
+        letter-spacing: .5px;
+    }
+
+    .vtab-title i {
+        /* gold accent bar, matches your .about-line */
+        display: block;
+        width: 4px;
+        height: 18px;
+        border-radius: 3px;
+        background: #c8a96a;
+    }
+
+    .vtab-close {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 34px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, .14);
+        border-radius: 10px;
+        background: #17171a;
+        color: #e6e6ea;
+        font-size: 16px;
+        line-height: 1;
+        cursor: pointer;
+        transition: background .2s ease, color .2s ease, transform .12s ease;
+    }
+
+    .vtab-close:hover {
+        background: #c8a96a;
+        color: #111;
+    }
+
+    .vtab-close:active {
+        transform: translateY(1px);
+    }
+
+    /* video itself — native controls, so scrub / pause / volume / fullscreen all work */
+    .vtab-media {
+        display: block;
+        background: #000;
+    }
+
+    .vtab-media video {
+        display: block;
+        width: 100%;
+        max-height: calc(88vh - 60px);
+        background: #000;
+        outline: none;
+    }
+
+    /* ---------- MOBILE ---------- */
+    @media (max-width: 600px) {
+        .eye-fab {
+            top: 20px;
+            /* aligns with your mobile .close-btn (top:20px; left:10px) */
+            left: 58px;
+            /* 10 + 40 + 8 */
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+        }
+
+        .eye-fab svg {
+            width: 19px;
+            height: 19px;
+        }
+
+        .eye-tip {
+            top: 26px;
+            left: 100px;
+            font-size: 11px;
+            padding: 6px 10px;
+        }
+
+        .vtab-panel {
+            width: 94vw;
+            border-radius: 14px;
+        }
+
+        .vtab-head {
+            padding: 10px 10px 10px 14px;
+        }
+
+        .vtab-title {
+            font-size: 13px;
+        }
+    }
+
+    /* landscape phones — keep the panel from getting cropped */
+    @media (max-height: 480px) {
+        .vtab-panel {
+            max-height: 94vh;
+        }
+
+        .vtab-media video {
+            max-height: calc(94vh - 52px);
+        }
+    }
+</style>
 </head>
 
 <body>
     <script>
         sessionStorage.setItem('lastTower', 'A');
     </script>
+<button class="eye-fab" id="eyeFab" type="button" aria-label="Watch video video" title="Watch Walkthrough">
+    <span class="eye-fab__badge" aria-hidden="true"></span>
+    <!-- eye icon -->
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z" stroke="currentColor" stroke-width="1.7"
+            stroke-linejoin="round" />
+        <circle cx="12" cy="12" r="3.1" stroke="currentColor" stroke-width="1.7" />
+    </svg>
+</button>
 
+<!-- hint label -->
+<div class="eye-tip" id="eyeTip" role="status" aria-live="polite">Watch Video</div>
+
+<!-- video tab -->
+<div class="vtab-overlay" id="vtabOverlay" role="dialog" aria-modal="true" aria-label="Walkthrough video" aria-hidden="true">
+    <div class="vtab-panel" id="vtabPanel">
+        <div class="vtab-head">
+            <div class="vtab-title"><i></i><span>Project Walkthrough</span></div>
+            <button class="vtab-close" id="vtabClose" type="button" aria-label="Close video">✕</button>
+        </div>
+        <div class="vtab-media">
+            <!-- 👇 CHANGE THIS PATH TO YOUR REAL VIDEO -->
+            <video id="vtabVideo" controls controlsList="nodownload" preload="metadata" playsinline
+                poster="./../images/Thumbnail/Tower_A.webp">
+                <source src="./../videos/New3.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</div>
     <div id="ui-hint" class="ui-hint" aria-live="polite" role="status">
         <!-- shown on mouse/trackpad devices -->
         <div class="ui-hint__row ui-hint__desktop">
@@ -181,6 +487,103 @@
             });
         }
     </script>
+    <script>
+    (function () {
+        var fab = document.getElementById('eyeFab');
+        var tip = document.getElementById('eyeTip');
+        var overlay = document.getElementById('vtabOverlay');
+        var panel = document.getElementById('vtabPanel');
+        var closeBtn = document.getElementById('vtabClose');
+        var video = document.getElementById('vtabVideo');
+        if (!fab || !overlay || !video) return;
+
+        var SEEN_KEY = 'vtabSeen';
+
+        /* ---- hide the red dot forever once they've opened it (per browser) ---- */
+        try {
+            if (localStorage.getItem(SEEN_KEY) === '1') fab.classList.add('is-seen');
+        } catch (e) { }
+
+        /* ---- auto-show the "Watch Walkthrough" label for 5s on page load ---- */
+        function showTip() { if (tip) tip.classList.add('is-visible'); }
+        function hideTip() { if (tip) tip.classList.remove('is-visible'); }
+
+        setTimeout(function () {
+            if (overlay.classList.contains('is-open')) return;
+            showTip();
+            setTimeout(hideTip, 5000);
+        }, 1200);
+
+        /* ---- and on hover / focus ---- */
+        fab.addEventListener('mouseenter', showTip);
+        fab.addEventListener('mouseleave', hideTip);
+        fab.addEventListener('focus', showTip);
+        fab.addEventListener('blur', hideTip);
+
+        /* ---- open ---- */
+        function openTab() {
+            hideTip();
+            overlay.classList.add('is-open');
+            overlay.setAttribute('aria-hidden', 'false');
+
+            fab.classList.add('is-seen');
+            try { localStorage.setItem(SEEN_KEY, '1'); } catch (e) { }
+
+            // click is a real user gesture, so sound is allowed
+            var p = video.play();
+            if (p && typeof p.catch === 'function') {
+                p.catch(function () {
+                    // some browsers still refuse -> retry muted so it never sits frozen
+                    video.muted = true;
+                    video.play().catch(function () { });
+                });
+            }
+            setTimeout(function () { closeBtn && closeBtn.focus(); }, 60);
+        }
+
+        /* ---- close ---- */
+        function closeTab() {
+            overlay.classList.remove('is-open');
+            overlay.setAttribute('aria-hidden', 'true');
+            video.pause();
+            try { video.currentTime = 0; } catch (e) { }   // restart next time
+            if (video.webkitExitFullscreen) { try { video.webkitExitFullscreen(); } catch (e) { } }
+            if (document.fullscreenElement) { document.exitFullscreen().catch(function () { }); }
+            fab.focus();
+        }
+
+        fab.addEventListener('click', openTab);
+        closeBtn && closeBtn.addEventListener('click', closeTab);
+
+        /* ---- click the dark backdrop to close (but not the panel) ---- */
+        overlay.addEventListener('click', function (e) {
+            if (!panel.contains(e.target)) closeTab();
+        });
+
+        /* ---- keyboard: Esc closes, Space play/pause, ←/→ skip 5s ---- */
+        document.addEventListener('keydown', function (e) {
+            if (!overlay.classList.contains('is-open')) return;
+
+            if (e.key === 'Escape') { e.preventDefault(); closeTab(); return; }
+
+            if (e.code === 'Space' || e.key === ' ') {
+                e.preventDefault();
+                video.paused ? video.play() : video.pause();
+                return;
+            }
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                video.currentTime = Math.min(video.duration || 1e9, video.currentTime + 5);
+                return;
+            }
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                video.currentTime = Math.max(0, video.currentTime - 5);
+                return;
+            }
+        });
+    })();
+</script>
     <script src="./../JS/enquiry_data.js"></script>
     <script src="./../JS/HoverName.js"></script>
     <script src="./../JS/Disbale-Inspect.js"></script>
