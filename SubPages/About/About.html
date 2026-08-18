@@ -3,1200 +3,335 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Ananta Street About</title>
-
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Ananta Street</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="style_copy.css" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    html,
-    body {
-      margin: 0;
-      background: black;
-    }
+    /* Scroll-video engine v2: the <video> paints directly; canvas is unused.
+       Section height and video sizing are set by script.js. */
+    .scroll-video canvas { display: none !important; }
 
-    /* ===== Scroll Video Section ===== */
-    .scroll-video {
-      position: relative;
-      /* sticky + spacer */
+    .scroll-video video {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
     }
-
 
     .sticky-wrap {
       position: sticky;
       top: 0;
       height: 100vh;
       overflow: hidden;
-    }
-
-    .scroll-video canvas {
-      position: absolute;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
-    }
-
-    .overlay-content {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      pointer-events: none;
-    }
-
-    .scroll-spacer {
-      height: 300vh;
-      /* controls scroll duration */
-    }
-
-    video {
-      display: none;
+      background: #000;
     }
   </style>
 </head>
 
 <body>
-  <div id="page-loader">
-    <div class="loader-inner">
-      <div class="loader-logo">ANANTA STREET</div>
-      <div class="loader-bar">
-        <span></span>
+  <div id="site-loader">
+    <div class="orbit-wrap">
+      <div class="orbit">
+        <span></span><span></span><span></span>
       </div>
+      <div class="orbit-text">ANANTA<br><span>STREET</span></div>
     </div>
   </div>
 
-  <button class="close-btn" id="closeCard">←</button>
-
-  <!-- =========================
-       SCROLL VIDEO SECTION
-  ========================== -->
-  <section class="scroll-video" data-video="video/video.mp4" data-duration="6" data-fps="60" data-autoplay="true">
-
-
+  <!-- ================= INTRO SECTION ================= -->
+  <section class="scroll-video" data-video="video/New1.mp4" data-duration="8" data-autoplay="5">
     <div class="sticky-wrap">
       <canvas></canvas>
-
+      <div class="video-dim"></div>
       <div class="overlay-content">
-        <!-- PUT YOUR OVERLAY CONTENT HERE -->
-        <h1 class="reveal-title" aria-label="ANANTA STREET">
-          <span>A</span><span>N</span><span>A</span><span>N</span><span>T</span><span>A</span>
-          <span>&nbsp;</span>
-          <span>S</span><span>T</span><span>R</span><span>E</span><span>E</span><span>T</span>
-        </h1>
-
-
+        <div class="hero-3d-wrap">
+          <h1 class="intro-title hero-3d" id="hero3D">
+            <span class="layer layer-back">ANANTA STREET</span>
+          </h1>
+        </div>
+        <p class="intro-sub"></p>
       </div>
+      <!-- INTRO: Two videos -->
+      <video muted playsinline preload="auto" webkit-playsinline="true"></video>
     </div>
-
     <div class="scroll-spacer"></div>
-
-    <video muted playsinline preload="auto"></video>
   </section>
-  <div class="about-us-page-ananta">
-    <div class="herosection">
-      <div class="about-us">
-        <div class="paragraphbackgroundimageandtex5">
-          <b class="b">A</b>
+
+  <!-- ================= RIGHT TEXT SECTION ================= -->
+  <section class="scroll-video" data-video="video/New2.mp4" data-duration="5">
+    <div class="sticky-wrap">
+      <canvas></canvas>
+      <div class="video-dim"></div>
+      <div class="film-grain"></div>
+      <div class="overlay-content right-aligned-panel">
+        <div class="text-panel">
+          <div class="accent-line"></div>
+          <h2 class="section-title">Ananta<br>Street</h2>
+          <p class="section-description reveal-toggle">
+         Presents a vibrant retail frontage designed for luxury brands,
+          flagship showrooms, lifestyle outlets, and curated dining experiences. 
+          Positioned along Canal Road, Ludhiana, the visual highlights double-height retail spaces,
+           strong street visibility, and an upscale commercial environment crafted to attract premium 
+           footfall and elevate brand presence.
+          </p>
         </div>
-        <div class="texttext">
-          <div class="textbackgroundimageandtextback">
-            <b class="b">B</b>
-          </div>
+        <div class="meta-bar">
+          <span>ANANTA STREET</span>
+          <span>•</span>
+          <span>COMMERCIAL & LIFESTYLE</span>
         </div>
-        <div class="paragraph1">
-          <b class="u">O</b>
-        </div>
-        <div class="paragraphbackgroundimageandtex7">
-          <b class="u">U</b>
-        </div>
-        <div class="text">
-          <div class="textbackgroundimageandtextback">
-            <b class="u">T</b>
-          </div>
-        </div>
-        <div class="text1">
-        </div>
-        <div class="paragraphbackgroundimageandtex8">
-          <b class="u">U</b>
-        </div>
-        <div class="texttext6">
-          <div class="textbackgroundimageandtextback">
-            <b class="u">S</b>
+      </div>
+      <!-- ONE video per section -->
+      <video muted playsinline preload="auto" webkit-playsinline="true"></video>
+    </div>
+    <div class="scroll-spacer"></div>
+  </section>
+
+  <!-- ================= LEFT TEXT SECTION ================= -->
+  <section class="scroll-video" data-video="video/New55.mp4" data-duration="5">
+    <div class="sticky-wrap">
+      <canvas></canvas>
+      <div class="video-dim"></div>
+      <div class="film-grain"></div>
+      <div class="overlay-content left-aligned-panel">
+        <div class="side-label">VICE TOWER</div>
+        <div class="text-panel">
+          <h2 class="section-title">VICE TOWER</h2>
+          <p class="section-description reveal-toggle">
+           The open terrace at Ananta Street is designed as a relaxed yet lively rooftop space where people can dine,
+             unwind, and spend quality time. With terrace restaurants, cafés, and alfresco seating, the space creates 
+             an inviting evening atmosphere. However, beyond dining, it also becomes a social 
+            hub where experiences, conversations, and city views come together naturally.
+          </p>
+          <div class="meta-bar">
+            <span>ANANTA STREET</span>
+            <span>•</span>
+            <span>RETAIL PLAZA</span>
           </div>
         </div>
       </div>
-      <div class="ananta-street">
-        <div class="ananta-street2"> ANANTA STREET</div>
+      <video muted playsinline preload="auto" webkit-playsinline="true"></video>
+    </div>
+    <div class="scroll-spacer"></div>
+  </section>
+
+  <!-- ================= RIGHT TEXT SECTION (NEXT) ================= -->
+  <section class="scroll-video" data-video="video/office space hub.mp4" data-duration="5">
+    <div class="sticky-wrap">
+      <canvas></canvas>
+      <div class="video-dim"></div>
+      <div class="film-grain"></div>
+      <div class="overlay-content right-aligned-panel">
+        <div class="spotlight"></div>
+        <div class="text-panel">
+          <h2 class="section-title">OFFICE SPACE HUB</h2>
+          <p class="section-description reveal-toggle">
+            The office spaces at Ananta Street are thoughtfully designed to create a comfortable
+            and efficient working environment. Along with dedicated offices and flexible co-working areas, professionals also benefit from in-house cafés, meeting zones, and collaborative spaces. Moreover, smart access control, advanced security systems, and seamless connectivity
+             ensure smooth daily operations while supporting a balanced and modern work lifestyle.
+          </p>
+          <div class="meta-bar">
+            <span>ANANTA STREET</span>
+            <span>•</span>
+            <span>CENTER COMPLEX</span>
+          </div>
+        </div>
+      </div>
+      <video muted playsinline preload="auto" webkit-playsinline="true"></video>
+    </div>
+    <div class="scroll-spacer"></div>
+  </section>
+
+  <!-- ================= LEFT TEXT SECTION (NEXT) ================= -->
+  <section class="scroll-video" data-video="video/Retail-1.mp4" data-duration="5">
+    <div class="sticky-wrap">
+      <canvas></canvas>
+      <div class="video-dim"></div>
+      <div class="film-grain"></div>
+      <div class="overlay-content left-aligned-panel">
+        <div class="corner-light corner-light-tl"></div>
+        <div class="corner-light corner-light-br"></div>
+        <div class="text-panel">
+          <h2 class="section-title">The Société Club</h2>
+          <p class="section-description reveal-toggle">
+           The Société Club at Ananta Street is designed as a complete lifestyle destination where fitness,
+            leisure, and social experiences come together. It features a modern gym, open swimming pool,
+             badminton and indoor sports courts, along with relaxing café spaces. Moreover, the club creates 
+             a perfect balance between wellness and recreation, offering members
+            a refreshing space to unwind, socialize, and stay active.
+          </p>
+          <div class="meta-bar">
+            <span>ANANTA STREET</span>
+            <span>•</span>
+            <span>The Société Club</span>
+          </div>
+        </div>
+      </div>
+      <video muted playsinline preload="auto" webkit-playsinline="true"></video>
+    </div>
+    <div class="scroll-spacer"></div>
+  </section>
+
+
+  <!-- ================= RIGHT TEXT SECTION (NEXT) ================= -->
+  <section class="scroll-video" data-video="video/new6.mp4" data-duration="5">
+    <div class="sticky-wrap">
+      <canvas></canvas>
+      <div class="video-dim"></div>
+      <div class="film-grain"></div>
+      <div class="overlay-content right-aligned-panel">
+        <div class="spotlight"></div>
+        <div class="text-panel">
+          <h2 class="section-title">GRAND RETAIL ENTRANCE</h2>
+          <p class="section-description reveal-toggle">
+            The entrance boulevard at Ananta Street presents a welcoming retail streetscape where premium showrooms,
+             active storefronts, and pedestrian-friendly walkways come alive. As visitors walk through the complex, the 
+             vibrant movement of people, visible brand fronts, and open public spaces create an engaging arrival experience,
+              setting the
+             tone for a lively destination focused on shopping, dining, and everyday urban interaction.
+          </p>
+          <div class="meta-bar">
+            <span>ANANTA STREET</span>
+            <span>•</span>
+            <span>GRAND RETAIL ENTRANCE</span>
+          </div>
+        </div>
+      </div>
+      <video muted playsinline preload="auto" webkit-playsinline="true"></video>
+    </div>
+    <div class="scroll-spacer"></div>
+  </section>
+  <!-- ================= AMENITIES SECTION ================= -->
+  <section class="amenities-section">
+    <div class="container">
+      <div class="header">
+        <span class="subtitle">AMENITIES</span>
+        <h2 class="main-title">Salient Features</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="card-top">
+            <div class="icon-box blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="30" height="30">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <span class="card-number">01</span>
+          </div>
+          <h3>Retail Shops</h3>
+          <p>Premium retail spaces with high footfall and modern infrastructure</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-top">
+            <div class="icon-box green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="30" height="30">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+            </div>
+            <span class="card-number">02</span>
+          </div>
+          <h3>Badminton Court</h3>
+          <p>State-of-the-art indoor badminton facility for sports enthusiasts</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-top">
+            <div class="icon-box cyan">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="30" height="30">
+                <path d="M2 6c.6.5 1.2 1 2.5 1C5.8 7 7 6 8 6s2.2 1 3.5 1c1.3 0 2.5-1 3.5-1s2.2 1 3.5 1c1.3 0 2.5-1 3.5-1"></path>
+                <path d="M2 12c.6.5 1.2 1 2.5 1 1.3 0 2.5-1 3.5-1s2.2 1 3.5 1c1.3 0 2.5-1 3.5-1s2.2 1 3.5 1c1.3 0 2.5-1 3.5-1"></path>
+                <path d="M2 18c.6.5 1.2 1 2.5 1 1.3 0 2.5-1 3.5-1s2.2 1 3.5 1c1.3 0 2.5-1 3.5-1s2.2 1 3.5 1c1.3 0 2.5-1 3.5-1"></path>
+              </svg>
+            </div>
+            <span class="card-number">03</span>
+          </div>
+          <h3>Swimming Pool</h3>
+          <p>Luxury swimming pool with modern amenities and safety features</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-top">
+            <div class="icon-box orange">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="30" height="30">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                <path d="M6 8H5a4 4 0 0 0 0 8h1"></path>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+                <rect x="8" y="7" width="8" height="10" rx="2"></rect>
+              </svg>
+            </div>
+            <span class="card-number">04</span>
+          </div>
+          <h3>Gymnasium</h3>
+          <p>Fully equipped fitness center with latest exercise equipment</p>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="premium-footer">
+    <div class="footer-bg-text">ANANTA</div>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2 class="brand-title">ANANTA<span>STREET</span></h2>
+          <p class="brand-text">A masterpiece of balance, designed for the visionaries of tomorrow. Experience business and leisure in perfect harmony.</p>
+        </div>
+        <div class="footer-links-wrapper">
+          <div class="link-group">
+            <h5>EXPLORE</h5>
+            <a href="#">The Project</a>
+            <a href="#">Amenities</a>
+            <a href="#">Gallery</a>
+            <a href="#">Virtual Tour</a>
+          </div>
+          <div class="link-group">
+            <h5>OFFICE</h5>
+            <p>Ananta Street Tower, Plot 42</p>
+            <p>Central Business District</p>
+            <p>+91 98723-13312</p>
+            <p>+91 98747-00005</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-mid">
+        <div class="newsletter-box">
+          <h4>Stay in the loop</h4>
+          <div class="input-wrap">
+            <input type="email" placeholder="ENTER YOUR EMAIL">
+            <button>→</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="copyright">© 2026 ANANTA STREET DEVELOPERS</span>
+        <div class="social-links">
+          <a href="#">INSTAGRAM</a>
+          <a href="#">LINKEDIN</a>
+          <a href="#">YOUTUBE</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="script.js"></script>
+  
+  <div class="curtain-wrap" id="curtain">
+    <div class="curtain left"></div>
+    <div class="curtain right"></div>
   </div>
-  <!-- CINEMATIC: ANANTA STREET -->
-  <!-- ALL OTHER SECTIONS -->
-  <section class="scroll-video" data-video="video/Ananta_1.mp4" data-duration="10" data-fps="60" data-autoplay="false">
-
-
-    <div class="sticky-wrap">
-      <canvas></canvas>
-
-      <!-- THIS WAS MISSING -->
-      <div class="video-dim"></div>
-
-      <div class="overlay-content">
-        <!-- <h1 style="font-size:60px;">ANANTA STREET</h1> -->
-        <div class="ananta-street">
-      <p class="text-wrapper">“A place where work, wellness, and social life come together seamlessly.”</p>
-      <div class="image-andt-text">
-        <div class="text-area">
-          <div class="container"></div>
-          <div class="container-wrapper"><div class="div"></div></div>
-          <div class="ananta">
-            <div class="container-2">
-              <div class="text-text-background"><div class="text-wrapper-2">A</div></div>
-              <div class="div-wrapper"><div class="text-wrapper-3">n</div></div>
-              <div class="text-text-background-2"><div class="text-wrapper-3">a</div></div>
-              <div class="text-text-background-3"><div class="text-wrapper-3">n</div></div>
-              <div class="text-text-background-4"><div class="text-wrapper-4">t</div></div>
-              <div class="text-text-background-5"><div class="text-wrapper-3">a</div></div>
-            </div>
-            <div class="container-2">
-              <div class="text-text-background"><div class="text-wrapper-2">S</div></div>
-              <div class="text-text-background-6"><div class="text-wrapper-4">t</div></div>
-              <div class="text-text-background-7"><div class="text-wrapper-5">r</div></div>
-              <div class="text-text-background-8"><div class="text-wrapper-3">e</div></div>
-              <div class="text-text-background-3"><div class="text-wrapper-3">e</div></div>
-              <div class="text-text-background-9"><div class="text-wrapper-4">t</div></div>
-            </div>
-          </div>
-          <div class="paragraph">
-            <div class="container-3"></div>
-            <p class="the-standards-of">
-              This side of the property is designed for balance beyond business. Premium showrooms sit alongside a
-              modern gym, clubhouse, pool area, badminton court, banquet hall, and a well-planned co-working space.
-            </p>
-          </div>
-        </div>
-        <div class="text-text-background-10"><div class="text-wrapper-6">1</div></div>
-      </div>
-    </div>
-      </div>
-    </div>
-
-    <div class="scroll-spacer"></div>
-    <video muted playsinline preload="auto"></video>
-  </section>
-
-
-
-  <!-- CINEMATIC: RETAIL PLAZA -->
-  <section class="scroll-video" data-video="video/Ananta_2.mp4" data-duration="2" data-fps="60" data-autoplay="false">
-
-    <div class="sticky-wrap">
-      <canvas></canvas>
-
-      <!-- THIS WAS MISSING -->
-      <div class="video-dim"></div>
-
-      <div class="overlay-content">
-        <!-- <h1 style="font-size:60px;">ANANTA STREET</h1> -->
-        <div class="nd-section">
-          <div class="text-background2">
-            <div class="texttextbackgroundimageandtext27">
-              <div class="div5">2</div>
-            </div>
-          </div>
-          <div class="image-and-text-area-2">
-            <div class="text-area">
-              <div class="container69">
-                <div class="container67">
-                </div>
-                <img class="backgroundimage21-icon" alt="">
-
-              </div>
-              <div class="container33">
-                <div class="container51">
-                </div>
-              </div>
-              <div class="container55">
-                <div class="container72">
-                  <div class="texttextbackgroundimageandtext13">
-                    <div class="v">R</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext29">
-                    <div class="v">e</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext30">
-                    <div class="v">t</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext31">
-                    <div class="v">a</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext32">
-                    <div class="v">i</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext33">
-                    <div class="v">l</div>
-                  </div>
-                </div>
-                <div class="container73">
-                  <div class="texttextbackgroundimageandtext2">
-                    <div class="t">P</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext35">
-                    <div class="t">l</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext36">
-                    <div class="t">a</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext37">
-                    <div class="t">z</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext38">
-                    <div class="t">a</div>
-                  </div>
-                </div>
-              </div>
-              <div class="container40">
-                <div class="container76">
-                  <div class="container94">
-                  </div>
-                </div>
-                <img class="backgroundimage20-icon2" alt="">
-
-              </div>
-              <div class="paragraphtext">
-                <div class="ananta-enclave-is">Ananta Enclave is made around a direct thought: that life must be
-                  lived in better surroundings and a beautiful environment after all we live only once and it
-                  should be in good style and comfort. The town is set up as a system of hazard-free
-                  territories with parks, eco-accommodating zones and recreation areas for kids connected by
-                  running courses just as tree-lined roads, and furthermore zone level retai l communities.
-                  Other regular qualities comprise of all-around divided zones for wor k jus t as ente
-                  rtainment, and furthermore stunning environmental factors that open the home windows of your
-                  brain</div>
-              </div>
-            </div>
-            <div class="image">
-              <div class="container43">
-                <img class="imageretailplaza-icon" alt="">
-
-                <div class="container42">
-                </div>
-              </div>
-              <div class="container44">
-                <div class="container99">
-                </div>
-                <div class="texttextbackgroundimageandtext11">
-                  <div class="div6">2</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="scroll-spacer"></div>
-    <video muted playsinline preload="auto"></video>
-  </section>
-
-
-
-  <!-- CINEMATIC: CENTERAL COMPLEX -->
-  <section class="scroll-video" data-video="video/Ananta_3.mp4" data-duration="5" data-fps="60" data-autoplay="false">
-
-    <div class="sticky-wrap">
-      <canvas></canvas>
-
-      <!-- THIS WAS MISSING -->
-      <div class="video-dim"></div>
-
-      <div class="overlay-content">
-        <!-- <h1 style="font-size:60px;">ANANTA STREET</h1> -->
-        <div class="rd-section">
-          <div class="background-text">
-            <div class="texttextbackgroundimageandtext">
-              <div class="div5">3</div>
-            </div>
-          </div>
-          <div class="image-and-text-area-3">
-            <div class="container60">
-              <div class="container69">
-                <div class="container67">
-                </div>
-                <img class="backgroundimage21-icon" alt="">
-
-              </div>
-              <div class="container52">
-                <div class="container51">
-                </div>
-              </div>
-              <div class="container55">
-                <div class="container72">
-                  <div class="texttextbackgroundimageandtext13">
-                    <div class="v">C</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext14">
-                    <div class="v">e</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext15">
-                    <div class="v">n</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext16">
-                    <div class="v">t</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext17">
-                    <div class="v">e</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext18">
-                    <div class="v">r</div>
-                  </div>
-                </div>
-                <div class="container73">
-                  <div class="texttextbackgroundimageandtext13">
-                    <div class="t">C</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext14">
-                    <div class="t">o</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext21">
-                    <div class="t">m</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext22">
-                    <div class="t">p</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext23">
-                    <div class="t">l</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext24">
-                    <div class="t">e</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext25">
-                    <div class="t">x</div>
-                  </div>
-                </div>
-              </div>
-              <div class="container78">
-                <div class="container76">
-                  <div class="container94">
-                  </div>
-                </div>
-                <img class="backgroundimage20-icon2" alt="">
-
-              </div>
-              <div class="paragraph9">
-                <div class="ashort-drive-along">Ashort drive along the alluring Sidhwan trench expressway
-                  carries you to Punjab's first genuinely worldwide network –Ananta Enclave. With sound
-                  arranging reflected in perfect configurations, ecoaccommodating environs, clean water just
-                  as air, and front line innovation just as a large portion of all. Intended to remove the
-                  difficult work from urban living, this is a network that benefits you.</div>
-              </div>
-            </div>
-            <div class="container83">
-              <div class="container98">
-                <img class="imagebackgroundimagebackground-icon" alt="">
-
-                <div class="container97">
-                </div>
-              </div>
-              <div class="container100">
-                <div class="container99">
-                </div>
-                <div class="texttextbackgroundimageandtext11">
-                  <div class="div6">4</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="scroll-spacer"></div>
-    <video muted playsinline preload="auto"></video>
-  </section>
-
-
-
-  <!-- CINEMATIC: VICE TOWER -->
-  <section class="scroll-video" data-video="video/Ananta_4.mp4" data-duration="5" data-fps="60" data-autoplay="false">
-
-    <div class="sticky-wrap">
-      <canvas></canvas>
-
-      <!-- THIS WAS MISSING -->
-      <div class="video-dim"></div>
-
-      <div class="overlay-content">
-        <!-- <h1 style="font-size:60px;">ANANTA STREET</h1> -->
-        <div class="th-section">
-          <div class="background-text">
-            <div class="texttextbackgroundimageandtext">
-              <div class="div5">4</div>
-            </div>
-          </div>
-          <div class="image-andt-text-container">
-            <div class="container79">
-              <div class="container69">
-                <div class="container67">
-                </div>
-                <img class="backgroundimage21-icon" alt="">
-
-              </div>
-              <div class="container71">
-                <div class="container70">
-                </div>
-                <img class="backgroundimage17-icon" alt="">
-
-              </div>
-              <div class="container74">
-                <div class="container72">
-                  <div class="texttextbackgroundimageandtext2">
-                    <div class="v">V</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext3">
-                    <div class="v">i</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext4">
-                    <div class="v">c</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext5">
-                    <div class="v">e</div>
-                  </div>
-                </div>
-                <div class="container73">
-                  <div class="texttextbackgroundimageandtext6">
-                    <div class="t">T</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext7">
-                    <div class="v">o</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext8">
-                    <div class="v">w</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext9">
-                    <div class="v">e</div>
-                  </div>
-                  <div class="texttextbackgroundimageandtext10">
-                    <div class="v">r</div>
-                  </div>
-                </div>
-              </div>
-              <div class="container78">
-                <div class="container76">
-                  <div class="container94">
-                  </div>
-                </div>
-                <img class="backgroundimage20-icon" alt="">
-
-              </div>
-              <div class="paragraph15">
-                <div class="vice-tower-is">Vice Tower is the residential centerpiece of Vice City, thoughtfully
-                  designed for elevated urban living. Featuring spacious homes, refined interiors, and
-                  expansive city views, it offers a perfect balance of privacy, comfort, and contemporary
-                  luxury—crafted for those who seek a lifestyle above the ordinary.</div>
-              </div>
-            </div>
-            <div class="container101">
-              <div class="container98">
-                <img class="imagebackgroundimagebackground-icon" alt="">
-
-                <div class="container97">
-                </div>
-              </div>
-              <div class="container100">
-                <div class="container99">
-                </div>
-                <div class="texttextbackgroundimageandtext11">
-                  <div class="div6">4</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="scroll-spacer"></div>
-    <video muted playsinline preload="auto"></video>
-  </section>
-
-
-  <div class="salientfeatures">
-    <div class="fourth-box">
-      <div class="container116">
-        <div class="containerbackgroundimage7">
-          <div class="textbackgroundimageandtextback">
-            <div class="div">04</div>
-          </div>
-        </div>
-      </div>
-      <div class="headingbackgroundimageandtextb">
-        <div class="gymnasium">Gymnasium</div>
-      </div>
-      <div class="paragraphbackgroundimageandtex3">
-        <div class="fully-equipped-fitness">Fully equipped fitness center with latest exercise equipment
-        </div>
-      </div>
-      <img class="gym-icon" alt="" src="icons/ContainerBackgroundImage6.png">
-
-    </div>
-    <div class="third-box">
-      <div class="container116">
-        <div class="containerbackgroundimage5">
-          <div class="textbackgroundimageandtextback">
-            <div class="div">03</div>
-          </div>
-        </div>
-        <img class="swimming-icon" alt="" src="icons/ContainerBackgroundImage4.png">
-
-      </div>
-      <div class="headingbackgroundimageandtextb2">
-        <div class="gymnasium">Swimming Pool</div>
-      </div>
-      <div class="paragraph14">
-        <div class="luxury-swimming-pool">Luxury swimming pool with modern amenities and safety features
-        </div>
-      </div>
-    </div>
-    <div class="second-box">
-      <div class="container116">
-        <div class="containerbackgroundimage5">
-          <div class="textbackgroundimageandtextback">
-            <div class="div">02</div>
-          </div>
-        </div>
-      </div>
-      <div class="headingbackgroundimageandtextb3">
-        <div class="gymnasium">Badminton Court</div>
-      </div>
-      <div class="paragraphbackgroundimageandtex3">
-        <div class="fully-equipped-fitness">State-of-the-art indoor badminton facility for sports
-          enthusiasts</div>
-      </div>
-      <img class="gym-icon" alt="" src="icons/ContainerBackgroundImage2.png">
-
-    </div>
-    <div class="first-box">
-      <div class="container116">
-        <div class="containerbackgroundimage7">
-          <div class="textbackgroundimageandtextback">
-            <div class="div">01</div>
-          </div>
-        </div>
-        <img class="swimming-icon" alt="" src="icons/ContainerBackgroundImage.png">
-
-      </div>
-      <div class="headingbackgroundimageandtextb4">
-        <div class="gymnasium">Retail Shops</div>
-      </div>
-      <div class="paragraph13">
-        <div class="premium-retail-spaces">Premium retail spaces with high footfall and modern
-          infrastructure</div>
-      </div>
-    </div>
-    <div class="sailent-features">
-      <div class="salient-features">Salient Features</div>
-    </div>
-    <div class="ameties">
-      <div class="amenities">Amenities</div>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="contact-area">
-      <div class="heading-3">
-        <div class="contact-us">Contact Us</div>
-      </div>
-      <div class="paragraph10">
-        <div class="paragraph">
-          <div class="canal-road-village">Canal Road, Village Birmi, Ludhiana.</div>
-        </div>
-        <div class="paragraph">
-          <div class="canal-road-village">Ph : 98148-11555, 0161 2979 899</div>
-        </div>
-      </div>
-    </div>
-    <div class="visit-area">
-      <div class="heading-32">
-        <div class="contact-us">Visit Us</div>
-      </div>
-      <div class="paragraph11">
-        <div class="paragraph">
-          <div class="canal-road-village">Web : www.anantaenclave.com</div>
-        </div>
-        <div class="paragraph">
-          <div class="canal-road-village">Email : info@anantaenclave.com</div>
-        </div>
-      </div>
-    </div>
-    <div class="follow-area">
-      <div class="heading-33">
-        <div class="contact-us">Follow Us</div>
-      </div>
-      <div class="container">
-        <div class="linkbackgroundimage">
-          <img class="container103-icon" alt="" src="icons/facebook.png">
-
-          <div class="paragraphbackgroundimageandtex">
-            <div class="anantaenvlave">/anantaenvlave</div>
-          </div>
-        </div>
-        <div class="linkbackgroundimage1">
-          <img class="container103-icon" alt="" src="icons/instagram.png">
-
-          <div class="paragraphbackgroundimageandtex">
-            <div class="anantaenvlave">/anantaenclave</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- =========================
-       NORMAL CONTENT (UNCHANGED)
-  ========================== -->
-  <!-- <div class="about-us-page-ananta">
-    <div class="herosection">
-      <div class="about-us">
-        <div class="paragraphbackgroundimageandtex5">
-          <b class="b">A</b>
-        </div>
-        <div class="texttext">
-          <div class="textbackgroundimageandtextback">
-            <b class="b">B</b>
-          </div>
-        </div>
-        <div class="paragraph1">
-          <b class="u">O</b>
-        </div>
-        <div class="paragraphbackgroundimageandtex7">
-          <b class="u">U</b>
-        </div>
-        <div class="text">
-          <div class="textbackgroundimageandtextback">
-            <b class="u">T</b>
-          </div>
-        </div>
-        <div class="text1">
-        </div>
-        <div class="paragraphbackgroundimageandtex8">
-          <b class="u">U</b>
-        </div>
-        <div class="texttext6">
-          <div class="textbackgroundimageandtextback">
-            <b class="u">S</b>
-          </div>
-        </div>
-      </div>
-      <div class="ananta-street">
-        <div class="ananta-street2"> ANANTA STREET</div>
-      </div>
-    </div>
-    <div class="st-section">
-      <div class="background-text">
-        <div class="texttextbackgroundimageandtext">
-          <div class="div5">1</div>
-        </div>
-      </div>
-      <div class="image-andt-text-container">
-        <div class="text-area2">
-          <div class="container11">
-          </div>
-          <div class="container14">
-            <div class="container51">
-            </div>
-          </div>
-          <div class="container17">
-            <div class="container72">
-              <div class="texttextbackgroundimageandtext2">
-                <div class="v">A</div>
-              </div>
-              <div class="texttextbackgroundimageandtext42">
-                <div class="v">n</div>
-              </div>
-              <div class="texttextbackgroundimageandtext43">
-                <div class="v">a</div>
-              </div>
-              <div class="texttextbackgroundimageandtext44">
-                <div class="v">n</div>
-              </div>
-              <div class="texttextbackgroundimageandtext45">
-                <div class="v">t</div>
-              </div>
-              <div class="texttextbackgroundimageandtext46">
-                <div class="v">a</div>
-              </div>
-            </div>
-            <div class="container73">
-              <div class="texttextbackgroundimageandtext2">
-                <div class="v">S</div>
-              </div>
-              <div class="texttextbackgroundimageandtext48">
-                <div class="v">t</div>
-              </div>
-              <div class="texttextbackgroundimageandtext49">
-                <div class="v">r</div>
-              </div>
-              <div class="texttextbackgroundimageandtext50">
-                <div class="v">e</div>
-              </div>
-              <div class="texttextbackgroundimageandtext51">
-                <div class="v">e</div>
-              </div>
-              <div class="texttextbackgroundimageandtext52">
-                <div class="v">t</div>
-              </div>
-            </div>
-          </div>
-          <div class="container78">
-            <div class="container76">
-              <div class="container94">
-              </div>
-            </div>
-            <img class="backgroundimage20-icon4" alt="">
-
-          </div>
-          <div class="paragraph5">
-            <div class="the-standards-of">The standards of living are changing day-to-day. As well as the
-              here and now scenario demands smart living, better connectivity to essentials as well as an
-              environment that is close to nature, pollution free and is good for the soul, also future
-              prepared. This is why we are enhancing Punjab's crucial residential zone by making it
-              smarter, bigger, and also better integrated. So proceed and discover our endeavors for
-              Ananta Enclave.</div>
-          </div>
-        </div>
-        <div class="image2">
-          <div class="container98">
-            <img class="imagebackgroundimagebackground-icon" alt="">
-
-            <div class="container97">
-            </div>
-          </div>
-          <div class="container100">
-            <div class="container99">
-            </div>
-            <div class="texttextbackgroundimageandtext53">
-              <div class="div6">1</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="nd-section">
-      <div class="text-background2">
-        <div class="texttextbackgroundimageandtext27">
-          <div class="div5">2</div>
-        </div>
-      </div>
-      <div class="image-and-text-area-2">
-        <div class="text-area">
-          <div class="container69">
-            <div class="container67">
-            </div>
-            <img class="backgroundimage21-icon" alt="">
-
-          </div>
-          <div class="container33">
-            <div class="container51">
-            </div>
-          </div>
-          <div class="container55">
-            <div class="container72">
-              <div class="texttextbackgroundimageandtext13">
-                <div class="v">R</div>
-              </div>
-              <div class="texttextbackgroundimageandtext29">
-                <div class="v">e</div>
-              </div>
-              <div class="texttextbackgroundimageandtext30">
-                <div class="v">t</div>
-              </div>
-              <div class="texttextbackgroundimageandtext31">
-                <div class="v">a</div>
-              </div>
-              <div class="texttextbackgroundimageandtext32">
-                <div class="v">i</div>
-              </div>
-              <div class="texttextbackgroundimageandtext33">
-                <div class="v">l</div>
-              </div>
-            </div>
-            <div class="container73">
-              <div class="texttextbackgroundimageandtext2">
-                <div class="t">P</div>
-              </div>
-              <div class="texttextbackgroundimageandtext35">
-                <div class="t">l</div>
-              </div>
-              <div class="texttextbackgroundimageandtext36">
-                <div class="t">a</div>
-              </div>
-              <div class="texttextbackgroundimageandtext37">
-                <div class="t">z</div>
-              </div>
-              <div class="texttextbackgroundimageandtext38">
-                <div class="t">a</div>
-              </div>
-            </div>
-          </div>
-          <div class="container40">
-            <div class="container76">
-              <div class="container94">
-              </div>
-            </div>
-            <img class="backgroundimage20-icon2" alt="">
-
-          </div>
-          <div class="paragraphtext">
-            <div class="ananta-enclave-is">Ananta Enclave is made around a direct thought: that life must be
-              lived in better surroundings and a beautiful environment after all we live only once and it
-              should be in good style and comfort. The town is set up as a system of hazard-free
-              territories with parks, eco-accommodating zones and recreation areas for kids connected by
-              running courses just as tree-lined roads, and furthermore zone level retai l communities.
-              Other regular qualities comprise of all-around divided zones for wor k jus t as ente
-              rtainment, and furthermore stunning environmental factors that open the home windows of your
-              brain</div>
-          </div>
-        </div>
-        <div class="image">
-          <div class="container43">
-            <img class="imageretailplaza-icon" alt="">
-
-            <div class="container42">
-            </div>
-          </div>
-          <div class="container44">
-            <div class="container99">
-            </div>
-            <div class="texttextbackgroundimageandtext11">
-              <div class="div6">2</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="rd-section">
-      <div class="background-text">
-        <div class="texttextbackgroundimageandtext">
-          <div class="div5">3</div>
-        </div>
-      </div>
-      <div class="image-and-text-area-3">
-        <div class="container60">
-          <div class="container69">
-            <div class="container67">
-            </div>
-            <img class="backgroundimage21-icon" alt="">
-
-          </div>
-          <div class="container52">
-            <div class="container51">
-            </div>
-          </div>
-          <div class="container55">
-            <div class="container72">
-              <div class="texttextbackgroundimageandtext13">
-                <div class="v">C</div>
-              </div>
-              <div class="texttextbackgroundimageandtext14">
-                <div class="v">e</div>
-              </div>
-              <div class="texttextbackgroundimageandtext15">
-                <div class="v">n</div>
-              </div>
-              <div class="texttextbackgroundimageandtext16">
-                <div class="v">t</div>
-              </div>
-              <div class="texttextbackgroundimageandtext17">
-                <div class="v">e</div>
-              </div>
-              <div class="texttextbackgroundimageandtext18">
-                <div class="v">r</div>
-              </div>
-            </div>
-            <div class="container73">
-              <div class="texttextbackgroundimageandtext13">
-                <div class="t">C</div>
-              </div>
-              <div class="texttextbackgroundimageandtext14">
-                <div class="t">o</div>
-              </div>
-              <div class="texttextbackgroundimageandtext21">
-                <div class="t">m</div>
-              </div>
-              <div class="texttextbackgroundimageandtext22">
-                <div class="t">p</div>
-              </div>
-              <div class="texttextbackgroundimageandtext23">
-                <div class="t">l</div>
-              </div>
-              <div class="texttextbackgroundimageandtext24">
-                <div class="t">e</div>
-              </div>
-              <div class="texttextbackgroundimageandtext25">
-                <div class="t">x</div>
-              </div>
-            </div>
-          </div>
-          <div class="container78">
-            <div class="container76">
-              <div class="container94">
-              </div>
-            </div>
-            <img class="backgroundimage20-icon2" alt="">
-
-          </div>
-          <div class="paragraph9">
-            <div class="ashort-drive-along">Ashort drive along the alluring Sidhwan trench expressway
-              carries you to Punjab's first genuinely worldwide network –Ananta Enclave. With sound
-              arranging reflected in perfect configurations, ecoaccommodating environs, clean water just
-              as air, and front line innovation just as a large portion of all. Intended to remove the
-              difficult work from urban living, this is a network that benefits you.</div>
-          </div>
-        </div>
-        <div class="container83">
-          <div class="container98">
-            <img class="imagebackgroundimagebackground-icon" alt="">
-
-            <div class="container97">
-            </div>
-          </div>
-          <div class="container100">
-            <div class="container99">
-            </div>
-            <div class="texttextbackgroundimageandtext11">
-              <div class="div6">4</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="th-section">
-      <div class="background-text">
-        <div class="texttextbackgroundimageandtext">
-          <div class="div5">4</div>
-        </div>
-      </div>
-      <div class="image-andt-text-container">
-        <div class="container79">
-          <div class="container69">
-            <div class="container67">
-            </div>
-            <img class="backgroundimage21-icon" alt="">
-
-          </div>
-          <div class="container71">
-            <div class="container70">
-            </div>
-            <img class="backgroundimage17-icon" alt="">
-
-          </div>
-          <div class="container74">
-            <div class="container72">
-              <div class="texttextbackgroundimageandtext2">
-                <div class="v">V</div>
-              </div>
-              <div class="texttextbackgroundimageandtext3">
-                <div class="v">i</div>
-              </div>
-              <div class="texttextbackgroundimageandtext4">
-                <div class="v">c</div>
-              </div>
-              <div class="texttextbackgroundimageandtext5">
-                <div class="v">e</div>
-              </div>
-            </div>
-            <div class="container73">
-              <div class="texttextbackgroundimageandtext6">
-                <div class="t">T</div>
-              </div>
-              <div class="texttextbackgroundimageandtext7">
-                <div class="v">o</div>
-              </div>
-              <div class="texttextbackgroundimageandtext8">
-                <div class="v">w</div>
-              </div>
-              <div class="texttextbackgroundimageandtext9">
-                <div class="v">e</div>
-              </div>
-              <div class="texttextbackgroundimageandtext10">
-                <div class="v">r</div>
-              </div>
-            </div>
-          </div>
-          <div class="container78">
-            <div class="container76">
-              <div class="container94">
-              </div>
-            </div>
-            <img class="backgroundimage20-icon" alt="">
-
-          </div>
-          <div class="paragraph15">
-            <div class="vice-tower-is">Vice Tower is the residential centerpiece of Vice City, thoughtfully
-              designed for elevated urban living. Featuring spacious homes, refined interiors, and
-              expansive city views, it offers a perfect balance of privacy, comfort, and contemporary
-              luxury—crafted for those who seek a lifestyle above the ordinary.</div>
-          </div>
-        </div>
-        <div class="container101">
-          <div class="container98">
-            <img class="imagebackgroundimagebackground-icon" alt="">
-
-            <div class="container97">
-            </div>
-          </div>
-          <div class="container100">
-            <div class="container99">
-            </div>
-            <div class="texttextbackgroundimageandtext11">
-              <div class="div6">4</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="salientfeatures">
-      <div class="fourth-box">
-        <div class="container116">
-          <div class="containerbackgroundimage7">
-            <div class="textbackgroundimageandtextback">
-              <div class="div">04</div>
-            </div>
-          </div>
-        </div>
-        <div class="headingbackgroundimageandtextb">
-          <div class="gymnasium">Gymnasium</div>
-        </div>
-        <div class="paragraphbackgroundimageandtex3">
-          <div class="fully-equipped-fitness">Fully equipped fitness center with latest exercise equipment
-          </div>
-        </div>
-        <img class="gym-icon" alt="" src="icons/ContainerBackgroundImage6.png">
-
-      </div>
-      <div class="third-box">
-        <div class="container116">
-          <div class="containerbackgroundimage5">
-            <div class="textbackgroundimageandtextback">
-              <div class="div">03</div>
-            </div>
-          </div>
-          <img class="swimming-icon" alt="" src="icons/ContainerBackgroundImage4.png">
-
-        </div>
-        <div class="headingbackgroundimageandtextb2">
-          <div class="gymnasium">Swimming Pool</div>
-        </div>
-        <div class="paragraph14">
-          <div class="luxury-swimming-pool">Luxury swimming pool with modern amenities and safety features
-          </div>
-        </div>
-      </div>
-      <div class="second-box">
-        <div class="container116">
-          <div class="containerbackgroundimage5">
-            <div class="textbackgroundimageandtextback">
-              <div class="div">02</div>
-            </div>
-          </div>
-        </div>
-        <div class="headingbackgroundimageandtextb3">
-          <div class="gymnasium">Badminton Court</div>
-        </div>
-        <div class="paragraphbackgroundimageandtex3">
-          <div class="fully-equipped-fitness">State-of-the-art indoor badminton facility for sports
-            enthusiasts</div>
-        </div>
-        <img class="gym-icon" alt="" src="icons/ContainerBackgroundImage2.png">
-
-      </div>
-      <div class="first-box">
-        <div class="container116">
-          <div class="containerbackgroundimage7">
-            <div class="textbackgroundimageandtextback">
-              <div class="div">01</div>
-            </div>
-          </div>
-          <img class="swimming-icon" alt="" src="icons/ContainerBackgroundImage.png">
-
-        </div>
-        <div class="headingbackgroundimageandtextb4">
-          <div class="gymnasium">Retail Shops</div>
-        </div>
-        <div class="paragraph13">
-          <div class="premium-retail-spaces">Premium retail spaces with high footfall and modern
-            infrastructure</div>
-        </div>
-      </div>
-      <div class="sailent-features">
-        <div class="salient-features">Salient Features</div>
-      </div>
-      <div class="ameties">
-        <div class="amenities">Amenities</div>
-      </div>
-    </div>
-    <div class="footer">
-      <div class="contact-area">
-        <div class="heading-3">
-          <div class="contact-us">Contact Us</div>
-        </div>
-        <div class="paragraph10">
-          <div class="paragraph">
-            <div class="canal-road-village">Canal Road, Village Birmi, Ludhiana.</div>
-          </div>
-          <div class="paragraph">
-            <div class="canal-road-village">Ph : 98148-11555, 0161 2979 899</div>
-          </div>
-        </div>
-      </div>
-      <div class="visit-area">
-        <div class="heading-32">
-          <div class="contact-us">Visit Us</div>
-        </div>
-        <div class="paragraph11">
-          <div class="paragraph">
-            <div class="canal-road-village">Web : www.anantaenclave.com</div>
-          </div>
-          <div class="paragraph">
-            <div class="canal-road-village">Email : info@anantaenclave.com</div>
-          </div>
-        </div>
-      </div>
-      <div class="follow-area">
-        <div class="heading-33">
-          <div class="contact-us">Follow Us</div>
-        </div>
-        <div class="container">
-          <div class="linkbackgroundimage">
-            <img class="container103-icon" alt="" src="icons/facebook.png">
-
-            <div class="paragraphbackgroundimageandtex">
-              <div class="anantaenvlave">/anantaenvlave</div>
-            </div>
-          </div>
-          <div class="linkbackgroundimage1">
-            <img class="container103-icon" alt="" src="icons/instagram.png">
-
-            <div class="paragraphbackgroundimageandtex">
-              <div class="anantaenvlave">/anantaenclave</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <script>
-    const closeCard = document.getElementById('closeCard'); // make sure it's defined
-    if (closeCard) {
-      closeCard.addEventListener('click', () => {
-        window.location.href = "./../../index.html"; // always go to index.html
-      });
-    }
-  </script>
-  <script src="load.js"></script>
-  <!-- <script src="script.js"></script> -->
 </body>
-
 </html>
